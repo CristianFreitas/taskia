@@ -17,7 +17,7 @@
 ## 👀 Revisão (0/5)
 — vazio —
 
-## 🎉 Feito (12)
+## 🎉 Feito (13)
 - **T-004** 🧹 chore · P2 · score 85 — Automatizar cognitive complexity no CI
 - **T-005** ✨ feature · P1 · score 85 — App shell do board
 - **T-006** ✨ feature · P1 · score 86 — Card v2 com bloqueio e barra de clarity
@@ -30,6 +30,7 @@
 - **T-013** ✨ feature · P0 · score 87 — Colunas com tema dark próprio
 - **T-014** 🔬 spike · P1 · score 86 — Pilotar dual-MCP (veredito: CONTINUA)
 - **T-015** 🧹 chore · P2 · score 88 — README sync
+- **T-016** 🔬 spike · P1 · score 87 — Mapear ai-memory no código
 
 ## 📦 Arquivado (3)
 - **T-001** exemplo do scaffold (magic link fictício) — aposentado, arquivo preservado
@@ -37,4 +38,4 @@
 - **T-003** spike superado (stack decidida em docs/10) — aposentado, arquivo preservado
 
 ## 🔴 Atenção
-- Quadro limpo: nada em aberto. Próxima tarefa será **T-016**.
+- Quadro limpo: nada em aberto. Próxima tarefa será **T-017**.
