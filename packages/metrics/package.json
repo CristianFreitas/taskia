@@ -1,0 +1,22 @@
+{
+  "name": "@taskia/metrics",
+  "version": "0.1.0",
+  "type": "module",
+  "main": "./src/index.ts",
+  "bin": {
+    "taskia-check-cognitiva": "./src/check-cli.ts"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "test:mutation:pr": "stryker run --since main",
+    "check": "tsc --noEmit -p tsconfig.json"
+  },
+  "dependencies": {
+    "typescript": "^5.9.3"
+  },
+  "devDependencies": {
+    "@stryker-mutator/core": "^8.7.1",
+    "@stryker-mutator/vitest-runner": "^8.7.1"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "$schema": "https://oxlint.mysteryven.cn/schemas/config.json",
+  "rules": {
+    "complexity": ["error", 22],
+    "no-explicit-any": "error"
+  }
+}

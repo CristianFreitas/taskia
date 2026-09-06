@@ -1,0 +1,36 @@
+projeto: TaskIA
+versao_formato: 1.0
+colunas:
+  - { id: inbox, nome: "📥 Inbox", cor: "#8A8F98", wip: 999 }
+  - { id: refinando, nome: "🔍 Refinando", cor: "#EAB308", wip: 5 }
+  - { id: pronto, nome: "✅ Pronto", cor: "#3B82F6", wip: 10 }
+  - { id: fazendo, nome: "⚡ Fazendo", cor: "#F59E0B", wip: 3 }
+  - { id: revisao, nome: "👀 Revisão", cor: "#8B5CF6", wip: 5 }
+  - { id: feito, nome: "🎉 Feito", cor: "#10B981", wip: 999 }
+  - { id: arquivado, nome: "📦 Arquivado", cor: "#52525B", wip: 999 }
+tipos: [feature, bug, chore, spike, decisao]
+prioridades: [P0, P1, P2, P3]
+wip_por_responsavel_em_fazendo: 1
+clarity_minimo_para_pronto: 70
+sequencia_proximo_id: 16
+stack:
+  runtime: bun
+  linguagem: typescript-strict
+  ui: sveltekit-2 + svelte-5 + shadcn-svelte + tailwind
+  libs_sv: [sv-animations, sv-table, sv-blocks, sv-efferd, sv-matrix, sv-particles, sv-agentation]
+quality_gates:
+  cyclomatic_max: 22
+  cognitive_max: 22
+  halstead_max: 80
+  loc_por_arquivo_max: 500
+  coverage_min: 100
+  crap_max: 25
+  mutantes_sobreviventes_max: 0
+  dead_code_max: 0
+  redundant_max: 0
+  any_unknown_max: 0
+  slop_min: 80
+anti_slop:
+  perfil: v1
+  receita: AGENTS.md
+  review_cmd: bun run review:slop --base origin/main

@@ -1,0 +1,146 @@
+:root {
+  color-scheme: dark;
+  --bg-0: #0b0d12;
+  --bg-1: #12151d;
+  --bg-2: #1a1f2b;
+  --border: #2a3142;
+  --text-1: #f1f5f9;
+  --text-2: #94a3b8;
+  --alerta: #ef4444;
+  --st-inbox: #8a8f98;
+  --st-refinando: #eab308;
+  --st-pronto: #3b82f6;
+  --st-fazendo: #f59e0b;
+  --st-revisao: #8b5cf6;
+  --st-feito: #10b981;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg-0);
+}
+
+/* SVAR Kanban: tema dark com tokens TaskIA */
+.wx-willow-dark-theme {
+  --wx-background: var(--bg-1);
+  --wx-background-alt: var(--bg-0);
+  --wx-kanban-column-bg: var(--bg-1);
+  --wx-kanban-card-bg: var(--bg-2);
+  --wx-kanban-border-color: var(--border);
+  --wx-kanban-column-over-limit-bg: rgb(239 68 68 / 14%);
+  --wx-kanban-drop-placeholder-bg: rgb(59 130 246 / 16%);
+  --wx-kanban-card-shadow: 0 1px 2px rgb(0 0 0 / 30%);
+  --wx-color-font: var(--text-1);
+  --wx-color-font-alt: var(--text-2);
+}
+
+.wx-kanban .wx-column {
+  border-radius: 12px;
+  border-top: 2px solid transparent;
+}
+
+.wx-kanban .wx-column-header {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-2);
+}
+
+.wx-kanban .wx-column-cards {
+  gap: 8px;
+  padding: 4px 8px 12px;
+}
+
+.tk-col-inbox { border-top-color: #8a8f98; }
+.tk-col-refinando { border-top-color: #eab308; }
+.tk-col-pronto { border-top-color: #3b82f6; }
+.tk-col-fazendo { border-top-color: #f59e0b; }
+.tk-col-revisao { border-top-color: #8b5cf6; }
+.tk-col-feito { border-top-color: #10b981; }
+.tk-col-arquivado { border-top-color: #52525b; }
+
+.taskia-erro {
+  background: #3a1414;
+  color: #fca5a5;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+}
+
+.taskia-btn,
+.taskia-campo {
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  color: var(--text-1);
+  border-radius: 8px;
+  font-size: 13px;
+}
+
+.taskia-btn {
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+.taskia-btn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.taskia-btn-primario {
+  background: #6366f1;
+  border-color: #6366f1;
+  color: #fff;
+  font-weight: 600;
+}
+
+.taskia-campo {
+  padding: 6px 10px;
+}
+
+.taskia-btn:focus-visible,
+.taskia-campo:focus-visible {
+  outline: 2px solid var(--st-pronto);
+  outline-offset: 1px;
+}
+
+@keyframes taskia-in {
+  from {
+    transform: translateX(24px);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+.taskia-drawer-in {
+  animation: taskia-in 200ms cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .taskia-drawer-in {
+    animation: none;
+  }
+}
+
+.taskia-toast {
+  background: var(--bg-2);
+  border: 1px solid var(--alerta);
+  color: var(--text-1);
+  border-radius: 10px;
+  padding: 10px 16px;
+  font-size: 13px;
+  box-shadow: 0 8px 24px rgb(0 0 0 / 45%);
+  margin: 0;
+}
+
+.taskia-toast.ok {
+  border-color: var(--st-feito);
+}

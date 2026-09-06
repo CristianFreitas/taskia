@@ -1,0 +1,20 @@
+# Decisões (memória do projeto — append-only)
+
+- 2026-09-04 — Magic link com JWT 15min (não sessão longa). Motivo: segurança + simplicidade. Por: humano.
+- 2026-09-05 — Markdown é o banco até a Fase 2. Motivo: IA opera sem setup, git versiona. Por: humano + IA.
+- 2026-09-05 — WIP fazendo = 3 total, 1 por dono. Motivo: evitar IA paralela alucinando. Por: humano.
+- 2026-09-05 — Stack: Bun + TS strict + SvelteKit 2 + SVAR Kanban. MCP na API low-level Server (McpServer.tool() do SDK 1.30 dá TS2589). Por: IA (medido: 30s+/call vs 10s total).
+- 2026-09-05 — sonarjs removido (v2 crasha com ts-eslint v8). Cognitiva <22 vira manual até T-004. Mutação: 85.39 (StringLiteral isento como dado). Por: IA.
+- 2026-09-05 — Web lê .taskia de verdade (load + POST /api/mover no core). opencode.json pluga MCP sozinho. Smoke web+MCP OK. Por: IA.
+- 2026-09-05 — Drawer abre por clique com guarda anti-drag (distância pointer); sem briga com editor SVAR. $types removidos do src (knip não resolve virtual em monorepo). Por: IA.
+- 2026-09-05 — Núcleo fechado: filtros + criar na UI, esqueleto/slug no core (nova.ts) reusado por MCP e web. CSS compartilhado em taskia.css (.taskia-btn/campo/erro). Por: IA.
+- 2026-09-06 — Frontend T-005..T-009 executadas e em revisao (gates verdes). Revisão em 6/5: aprovar drena. T-010: mover duplicava `## Log` (MCP+web herdavam) — corrigido em `aplicarMovimento` + testes; mutação 84.77. Smokes com escrita só em board temporário (incidente T-009 revertido e registrado). Por: IA.
+- 2026-09-06 — T-011 redesign do topo (feedback humano): BoardTopo.svelte, cores de status centralizadas (`cor` em COLUNAS + `corStatus()`), color-scheme dark, focus-visible, +page 222 linhas. Por: IA.
+- 2026-09-06 — T-012 layout full-screen (feedback humano): main flex 100dvh sem max-width, body margin 0, `.wx-kanban` 100% via `:global`, lista com scroll próprio. Por: IA.
+- 2026-09-06 — T-013 colunas com tema (feedback humano): WillowDark + vars --wx-* nos tokens, `css: tk-col-*` por coluna (accent do status), headers uppercase. Por: IA.
+- 2026-09-06 — Finalizado (aprovação humana "finalize agora"): T-005..T-011 em feito; T-004 refinada de verdade (Plano em 5 passos, score 85) em pronto; exemplos T-001..T-003 aposentados em arquivado (arquivos preservados). Quadro drenado; próxima: T-004. Por: humano + IA.
+- 2026-09-06 — T-004 executada: `packages/metrics` com walker de cognitiva via API do TS (subset Sonar documentado), 14 testes 100%, CLI fiada no `check`, mutação 87.88; oxlint sem regra cognitiva provado por fixture; configs por pacote ignoradas no jscpd por decisão (declarativas); em revisao. Por: IA.
+- 2026-09-06 — Ecossistema TaskIA × ai-memory (estudo docs/13): SIM com acoplamento frouxo — TaskIA dona do ESTADO, ai-memory dono do CONHECIMENTO; 5 pontes + 3 fases, Fase A zero código. T-014 (piloto) em refinando. Por: IA (humano perguntou "vale?").
+- 2026-09-06 — T-014 piloto APROVADO na prática: briefing 70ms + query 304ms (hit: ai-memory já é padrão na sales-platform), T-015 fim a fim, `write_page` decisions/taskia-ecossistema-2026-09-06.md + read-back OK; receita em AGENTS.md §6. Em revisao. Por: IA.
+- 2026-09-06 — Quadro finalizado (aprovação humana "aprovado"): T-004, T-012, T-013, T-014, T-015 em feito. Board: 12 feito, 3 arquivado, 0 em aberto. Próxima: T-016. Por: humano + IA.
+- 2026-09-06 — Pós-piloto docs/13 §8: custo ~2.5k tokens/tarefa; ROI neutro neste repo (clarity alta já carrega contexto), alto na sales-platform; 8 riscos (decay, staleness, determinismo, lixo, contaminação, embeddings, métrica, ops) + corte em 30 dias (hit-rate ≥20%, lint rodado, 0 contaminação) ou desliga. Por: IA (humano perguntou "faz sentido?").

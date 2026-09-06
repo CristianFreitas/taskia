@@ -1,0 +1,14 @@
+{
+  "$schema": "https://stryker-mutator.io/schema/stryker-schema.json",
+  "mutate": ["src/parse-task.ts", "src/transitions.ts", "src/mover.ts", "src/nova.ts", "src/quality.ts", "src/clarity.ts", "src/slop.ts"],
+  "testRunner": "vitest",
+  "plugins": ["./node_modules/@stryker-mutator/vitest-runner/dist/src/index.js"],
+  "reporters": ["clear-text", "json"],
+  "coverageAnalysis": "perTest",
+  "mutator": {
+    "excludedMutations": [
+      "StringLiteral"
+    ]
+  },
+  "thresholds": { "high": 80, "low": 70, "break": 70 }
+}

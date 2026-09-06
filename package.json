@@ -1,0 +1,33 @@
+{
+  "name": "taskia",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "bun@1.4.1",
+  "workspaces": ["packages/*", "apps/*"],
+  "scripts": {
+    "check": "tsc --noEmit -p packages/core/tsconfig.json && tsc --noEmit -p apps/mcp/tsconfig.json && tsc --noEmit -p packages/metrics/tsconfig.json && oxlint && eslint . && bun run check:cognitiva",
+    "check:web": "bun --filter @taskia/web run check",
+    "test": "bun run --filter '*' test",
+    "test:coverage": "bun run --filter @taskia/core test:coverage",
+    "test:mutation:pr": "bun --filter @taskia/core run test:mutation:pr",
+    "check:cognitiva": "bun packages/metrics/src/check-cli.ts packages apps",
+    "dead": "knip",
+    "dup": "jscpd packages apps --reporters ai --baseline .jscpd-baseline.json",
+    "review:slop": "bun packages/core/src/review-cli.ts packages/core/src/*.ts packages/metrics/src/*.ts apps/mcp/src/*.ts",
+    "dev:web": "bun --filter @taskia/web dev",
+    "dev:mcp": "bun --filter @taskia/mcp dev"
+  },
+  "devDependencies": {
+    "@eslint/js": "9",
+    "@types/bun": "^1.4.1",
+    "@vitest/coverage-v8": "^3.2.4",
+    "eslint": "^9.39.2",
+    "jscpd": "^5.0.7",
+    "knip": "^5.65.3",
+    "oxlint": "^1.21.0",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.69.0",
+    "vitest": "^3.2.4"
+  }
+}

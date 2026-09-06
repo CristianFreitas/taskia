@@ -1,0 +1,22 @@
+{
+  "name": "@taskia/web",
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite dev",
+    "build": "vite build",
+    "check": "svelte-check --tsconfig ./tsconfig.json"
+  },
+  "dependencies": {
+    "@svar-ui/svelte-kanban": "^2.6.0",
+    "@sveltejs/adapter-node": "^5.5.7",
+    "@taskia/core": "workspace:*"
+  },
+  "devDependencies": {
+    "@sveltejs/kit": "^2.43.2",
+    "@sveltejs/vite-plugin-svelte": "^6.2.1",
+    "svelte": "^5.46.3",
+    "svelte-check": "^4.3.5",
+    "vite": "^7.2.4"
+  }
+}

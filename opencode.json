@@ -1,0 +1,10 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "taskia": {
+      "type": "local",
+      "command": ["bun", "run", "apps/mcp/src/index.ts"],
+      "enabled": true
+    }
+  }
+}

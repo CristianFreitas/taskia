@@ -1,0 +1,8 @@
+{
+  "threshold": 0,
+  "reporters": ["ai"],
+  "ignore": ["**/dist/**", "**/coverage/**", "**/*.test.ts", "**/*.md", "**/.svelte-kit/**", "**/build/**", "**/node_modules/**", "**/vitest.config.ts", "**/stryker.conf.json"],
+  "mode": "strict",
+  "minTokens": 50,
+  "minLines": 5
+}
