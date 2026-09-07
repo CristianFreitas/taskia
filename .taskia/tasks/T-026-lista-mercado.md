@@ -1,15 +1,15 @@
 ---
 id: T-026
 titulo: Lista de ingredientes consolidada + check-off de mercado
-status: pronto
+status: revisao
 tipo: feature
 prioridade: P1
 projeto: marmita
-branch: ""
+branch: "t-026-lista"
 responsavel: null
 criado_em: 2026-09-06T00:00:00Z
-atualizado_em: 2026-09-06T00:00:00Z
-versao: 2
+atualizado_em: 2026-09-07T03:18:25.077Z
+versao: 4
 estimativa: M
 dependencias: []
 tags: [cliente, lista, mercado]
@@ -50,3 +50,5 @@ Requer T-024. Persistência local primeiro (mesma estratégia do rascunho T-025)
 ## Log
 - 2026-09-06 (ia-opencode): criada refinada (score 83).
 - 2026-09-06 (ia-opencode): movida refinando → pronto (score 83 ≥ 70, aceite testável, sem deps).
+- 2026-09-07T03:18:04.016Z : mover → fazendo. Motivo: inicio lista consolidada + check-off
+- 2026-09-07T03:18:25.077Z : mover → revisao. Motivo: lista consolidada + check-off + aviso incompleta, gates ok

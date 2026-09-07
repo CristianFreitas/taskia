@@ -1,15 +1,15 @@
 ---
 id: T-027
 titulo: Enviar lista via WhatsApp (wa.me + compartilhar/copiar fallback)
-status: pronto
+status: revisao
 tipo: feature
 prioridade: P1
 projeto: marmita
-branch: ""
+branch: "t-027-envio"
 responsavel: null
 criado_em: 2026-09-06T00:00:00Z
-atualizado_em: 2026-09-06T00:00:00Z
-versao: 2
+atualizado_em: 2026-09-07T03:18:42.176Z
+versao: 4
 estimativa: P
 dependencias: []
 tags: [whatsapp, share]
@@ -50,3 +50,5 @@ Requer lista da T-026. Teste o link em Android e iPhone reais com WhatsApp insta
 ## Log
 - 2026-09-06 (ia-opencode): criada refinada (score 85).
 - 2026-09-06 (ia-opencode): movida refinando → pronto (score 85 ≥ 70, aceite testável, sem deps).
+- 2026-09-07T03:18:29.996Z : mover → fazendo. Motivo: inicio envio WhatsApp
+- 2026-09-07T03:18:42.176Z : mover → revisao. Motivo: wa.me validado + share + copiar + previa, gates ok

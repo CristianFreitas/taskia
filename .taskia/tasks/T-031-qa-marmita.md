@@ -1,15 +1,15 @@
 ---
 id: T-031
 titulo: Gates + PWA offline + a11y + 360px no app Marmita
-status: pronto
+status: revisao
 tipo: chore
 prioridade: P2
 projeto: marmita
-branch: ""
+branch: "t-031-gates"
 responsavel: null
 criado_em: 2026-09-06T00:00:00Z
-atualizado_em: 2026-09-06T00:00:00Z
-versao: 2
+atualizado_em: 2026-09-07T03:24:43.697Z
+versao: 4
 estimativa: M
 dependencias: []
 tags: [qualidade, pwa, a11y]
@@ -51,3 +51,5 @@ Rode os gates a cada tarefa do projeto, não só aqui — esta tarefa é a certi
 ## Log
 - 2026-09-06 (ia-opencode): criada refinada (score 81).
 - 2026-09-06 (ia-opencode): movida refinando → pronto (score 81 ≥ 70, aceite testável, sem deps).
+- 2026-09-07T03:24:41.544Z : mover → fazendo. Motivo: inicio bateria final de gates
+- 2026-09-07T03:24:43.697Z : mover → revisao. Motivo: gates verdes + smoke 6 rotas 200 + PWA no build, merge main

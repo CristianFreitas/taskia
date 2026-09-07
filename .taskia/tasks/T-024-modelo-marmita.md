@@ -1,15 +1,15 @@
 ---
 id: T-024
 titulo: Modelo de dados Marmita + seed (clientes, planos, pratos, escolhas)
-status: pronto
+status: revisao
 tipo: feature
 prioridade: P0
 projeto: marmita
-branch: ""
+branch: "t-024-modelo"
 responsavel: null
 criado_em: 2026-09-06T00:00:00Z
-atualizado_em: 2026-09-06T00:00:00Z
-versao: 2
+atualizado_em: 2026-09-07T03:17:18.051Z
+versao: 4
 estimativa: P
 dependencias: []
 tags: [modelo, dados]
@@ -49,3 +49,5 @@ Unidades: some só igual (`kg`+`kg`); unidades diferentes listam separado (conve
 ## Log
 - 2026-09-06 (ia-opencode): criada refinada (score 86).
 - 2026-09-06 (ia-opencode): movida refinando → pronto (score 86 ≥ 70, aceite testável, sem deps).
+- 2026-09-07T03:15:36.983Z : mover → fazendo. Motivo: inicio modelo de dados + regras
+- 2026-09-07T03:17:18.051Z : mover → revisao. Motivo: regras puras + seed + store, coverage 100%, check 0/0

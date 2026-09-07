@@ -1,15 +1,15 @@
 ---
 id: T-028
 titulo: Painel cozinheira — clientes, planos e ciclo de 15 dias
-status: pronto
+status: revisao
 tipo: feature
 prioridade: P1
 projeto: marmita
-branch: ""
+branch: "t-028-painel"
 responsavel: null
 criado_em: 2026-09-06T00:00:00Z
-atualizado_em: 2026-09-06T00:00:00Z
-versao: 2
+atualizado_em: 2026-09-07T03:19:03.664Z
+versao: 4
 estimativa: M
 dependencias: []
 tags: [painel, clientes, ciclo]
@@ -50,3 +50,5 @@ Requer T-024. Um único perfil (ela) — sem login; proteção por obscuridade d
 ## Log
 - 2026-09-06 (ia-opencode): criada refinada (score 82).
 - 2026-09-06 (ia-opencode): movida refinando → pronto (score 82 ≥ 70, aceite testável, sem deps).
+- 2026-09-07T03:18:44.188Z : mover → fazendo. Motivo: inicio painel clientes/ciclo
+- 2026-09-07T03:19:03.664Z : mover → revisao. Motivo: painel clientes/ciclo/virada com historico, gates ok

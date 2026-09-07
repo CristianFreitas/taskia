@@ -1,15 +1,15 @@
 ---
 id: T-033
 titulo: Limpeza anti-slop no Marmita (as 10 métricas, zero tolerância)
-status: pronto
+status: revisao
 tipo: chore
 prioridade: P1
 projeto: marmita
-branch: ""
+branch: "t-033-slop"
 responsavel: null
 criado_em: 2026-09-06T00:00:00Z
-atualizado_em: 2026-09-06T00:00:00Z
-versao: 2
+atualizado_em: 2026-09-07T03:25:01.698Z
+versao: 4
 estimativa: M
 dependencias: []
 tags: [qualidade, slop, metricas]
@@ -50,3 +50,5 @@ Ligue os gates desde a T-023 (não deixe slop acumular p/ limpar aqui — esta t
 ## Log
 - 2026-09-06 (ia-opencode): criada refinada (score 84).
 - 2026-09-06 (ia-opencode): movida refinando → pronto (score 84 ≥ 70, aceite testável, sem deps).
+- 2026-09-07T03:24:45.366Z : mover → fazendo. Motivo: inicio certificacao anti-slop
+- 2026-09-07T03:25:01.698Z : mover → revisao. Motivo: certificado: check 0, coverage 100, knip 0, jscpd 0, max 155 linhas, 0 any

@@ -1,15 +1,15 @@
 ---
 id: T-030
 titulo: Lista por cliente + TRAVA anti-esquecimento (killer feature)
-status: pronto
+status: revisao
 tipo: feature
 prioridade: P0
 projeto: marmita
-branch: ""
+branch: "t-030-trava"
 responsavel: null
 criado_em: 2026-09-06T00:00:00Z
-atualizado_em: 2026-09-06T00:00:00Z
-versao: 2
+atualizado_em: 2026-09-07T03:20:39.920Z
+versao: 4
 estimativa: M
 dependencias: []
 tags: [painel, lista, trava, dor-principal]
@@ -50,3 +50,5 @@ Requer T-024 (regra), T-029 (correção), T-026 (consolidação). Esta é a feat
 ## Log
 - 2026-09-06 (ia-opencode): criada refinada (score 87).
 - 2026-09-06 (ia-opencode): movida refinando → pronto (score 87 ≥ 70, aceite testável, sem deps).
+- 2026-09-07T03:19:27.467Z : mover → fazendo. Motivo: inicio trava anti-esquecimento
+- 2026-09-07T03:20:39.920Z : mover → revisao. Motivo: trava bloqueia incompleta + mapeamento 1 toque + selo, gates ok

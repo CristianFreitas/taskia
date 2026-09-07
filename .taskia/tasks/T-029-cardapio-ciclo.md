@@ -1,15 +1,15 @@
 ---
 id: T-029
 titulo: Painel cozinheira — montar e publicar cardápio do ciclo
-status: pronto
+status: revisao
 tipo: feature
 prioridade: P1
 projeto: marmita
-branch: ""
+branch: "t-029-montar"
 responsavel: null
 criado_em: 2026-09-06T00:00:00Z
-atualizado_em: 2026-09-06T00:00:00Z
-versao: 2
+atualizado_em: 2026-09-07T03:19:25.638Z
+versao: 4
 estimativa: M
 dependencias: []
 tags: [painel, cardapio, pratos]
@@ -50,3 +50,5 @@ Requer T-024. Foto: upload local primeiro (câmera do celular); hospedagem exter
 ## Log
 - 2026-09-06 (ia-opencode): criada refinada (score 83).
 - 2026-09-06 (ia-opencode): movida refinando → pronto (score 83 ≥ 70, aceite testável, sem deps).
+- 2026-09-07T03:19:05.297Z : mover → fazendo. Motivo: inicio montar/publicar cardapio
+- 2026-09-07T03:19:25.638Z : mover → revisao. Motivo: CRUD pratos + publicar versionado + selo incompleto, gates ok

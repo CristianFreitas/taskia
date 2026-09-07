@@ -1,15 +1,15 @@
 ---
 id: T-025
 titulo: Cardápio do ciclo + cliente escolhe 10 pratos (contador, acessível)
-status: pronto
+status: revisao
 tipo: feature
 prioridade: P1
 projeto: marmita
-branch: ""
+branch: "t-025-escolha"
 responsavel: null
 criado_em: 2026-09-06T00:00:00Z
-atualizado_em: 2026-09-06T00:00:00Z
-versao: 2
+atualizado_em: 2026-09-07T03:18:02.061Z
+versao: 4
 estimativa: M
 dependencias: []
 tags: [cliente, cardapio, a11y]
@@ -50,3 +50,5 @@ Requer tipos/regras da T-024. Teste com TalkBack/VoiceOver real, não só axe.
 ## Log
 - 2026-09-06 (ia-opencode): criada refinada (score 84).
 - 2026-09-06 (ia-opencode): movida refinando → pronto (score 84 ≥ 70, aceite testável, sem deps).
+- 2026-09-07T03:17:24.020Z : mover → fazendo. Motivo: inicio tela cardapio + escolha
+- 2026-09-07T03:18:02.061Z : mover → revisao. Motivo: cardapio + escolha com contador, aria-pressed, alvos 48px, check+coverage ok

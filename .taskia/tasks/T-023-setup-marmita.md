@@ -1,15 +1,15 @@
 ---
 id: T-023
 titulo: Setup app Marmita (SvelteKit PWA + shadcn-svelte + tokens clean)
-status: pronto
+status: revisao
 tipo: chore
 prioridade: P0
 projeto: marmita
-branch: ""
+branch: "t-023-setup"
 responsavel: null
 criado_em: 2026-09-06T00:00:00Z
-atualizado_em: 2026-09-06T00:00:00Z
-versao: 2
+atualizado_em: 2026-09-07T03:15:32.562Z
+versao: 4
 estimativa: P
 dependencias: []
 tags: [setup, pwa, frontend]
@@ -51,3 +51,5 @@ Repo novo (fora de `/home/zatty/task`). Traga `AGENTS.md` adaptado (runes, sem `
 ## Log
 - 2026-09-06 (ia-opencode): criada refinada (score 85).
 - 2026-09-06 (ia-opencode): movida refinando → pronto (score 85 ≥ 70, aceite testável, sem deps).
+- 2026-09-07T03:13:09.009Z : mover → fazendo. Motivo: inicio setup app Marmita
+- 2026-09-07T03:15:32.562Z : mover → revisao. Motivo: base PWA + tokens + layout, check 0/0, build ok
