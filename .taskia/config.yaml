@@ -12,10 +12,11 @@ tipos: [feature, bug, chore, spike, decisao]
 prioridades: [P0, P1, P2, P3]
 projetos:
   - { id: taskia, nome: "TaskIA", cor: "#6366F1" }
+  - { id: marmita, nome: "Marmita", cor: "#F97316" }
 projeto_padrao: taskia
 wip_por_responsavel_em_fazendo: 1
 clarity_minimo_para_pronto: 70
-sequencia_proximo_id: 23
+sequencia_proximo_id: 32
 stack:
   runtime: bun
   linguagem: typescript-strict
