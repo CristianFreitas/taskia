@@ -28,3 +28,4 @@
 - 2026-09-06 — Quadro finalizado de novo (aprovação humana "pode seguir"): T-016 em feito. Board: 13 feito, 3 arquivado, 0 em aberto. Próxima: T-017. Por: humano + IA.
 - 2026-09-06 — T-020 multi-projeto executada: `projeto` no frontmatter + `projetos:` no config, MCP criar/listar/resumir/dividir, web filtro+badge+criar, backfill 20 tarefas, stryker 84.89; em revisao. Por: IA.
 - 2026-09-06 — T-021 branch obrigatória executada: `branch.ts` + gate em `aplicarMovimento`, MCP criar/atualizar, backfill, docs 03/04/09; smoke achou bug em atualizar (fix regex de linha) + race pré-existente registrada em T-022 (inbox); em revisao. Por: IA.
+- 2026-09-06 — Finalizado (aprovação humana "ok"): T-021 em feito. Board: 18 feito, 3 arquivado, 1 inbox (T-022). Próxima: T-023. Por: humano + IA.

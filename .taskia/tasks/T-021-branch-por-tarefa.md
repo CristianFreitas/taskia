@@ -1,7 +1,7 @@
 ---
 id: T-021
 titulo: Branch obrigatória por tarefa, merge exigido no feito
-status: revisao
+status: feito
 tipo: feature
 prioridade: P0
 projeto: taskia
@@ -9,7 +9,7 @@ branch: feat/T-021-branch-por-tarefa
 responsavel: ia-opencode
 criado_em: 2026-09-06T00:00:00Z
 atualizado_em: 2026-09-06T00:00:00Z
-versao: 4
+versao: 5
 estimativa: M
 dependencias: []
 tags: [core, mcp, workflow, git]
@@ -63,6 +63,7 @@ Regra anterior (commit+push por tarefa, T-020 era era push-direto-na-main) não 
 - 2026-09-06: criada refinada (score 88, proposta do humano + condição de merge simples).
 - 2026-09-06 (ia-opencode): refinando → pronto (clarity 88, sem deps) → fazendo.
 - 2026-09-06 (ia-opencode): implementado (branch.ts + gate em aplicarMovimento, MCP criar/atualizar, backfill 21 tarefas, docs 03/04/09); smoke achou bug real em atualizar (replace com valor vazio corrompia — fix com regex de linha) + race pré-existente registrada em T-022; stryker 84.89; fazendo → revisao.
+- 2026-09-06 (humano, via "ok"): aprovado em revisao (DoD ok); revisao → feito. Handoff: concluído.
 
 ## Qualidade (preenchido pela IA ao mover p/ revisao)
 - [x] complexity: oxlint verde; branch.ts fns pequenas

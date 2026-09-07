@@ -14,10 +14,10 @@
 ## ⚡ Fazendo (0/3)
 — vazio —
 
-## 👀 Revisão (1/5)
-- [taskia] **T-021** ✨ feature · P0 · `ia-opencode` · score 88 · quality ✅ — Branch obrigatória por tarefa
+## 👀 Revisão (0/5)
+— vazio —
 
-## 🎉 Feito (17)
+## 🎉 Feito (18)
 - [taskia] **T-004** 🧹 chore · P2 · score 85 — Automatizar cognitive complexity no CI
 - [taskia] **T-005** ✨ feature · P1 · score 85 — App shell do board
 - [taskia] **T-006** ✨ feature · P1 · score 86 — Card v2 com bloqueio e barra de clarity
@@ -35,6 +35,7 @@
 - [taskia] **T-018** ✨ feature · P0 · score 86 — Factory + rotas conceito (rotas excluídas; refator mantido)
 - [taskia] **T-019** ✨ feature · P0 · score 87 — Redesign completo do layout principal
 - [taskia] **T-020** ✨ feature · P0 · score 87 — Separar quadro por projeto
+- [taskia] **T-021** ✨ feature · P0 · score 88 — Branch obrigatória por tarefa
 
 ## 📦 Arquivado (3)
 - [taskia] **T-001** exemplo do scaffold (magic link fictício) — aposentado, arquivo preservado
@@ -42,4 +43,4 @@
 - [taskia] **T-003** spike superado (stack decidida em docs/10) — aposentado, arquivo preservado
 
 ## 🔴 Atenção
-- Em `revisao`: **T-021** (aguarda OK humano). Em `inbox`: **T-022** (race MCP, próxima a refinar).
+- Quadro limpo: nada em aberto além de **T-022** em `inbox` (race MCP). Próxima tarefa será **T-023**.
