@@ -19,7 +19,7 @@
 ## ⚡ Fazendo (0/3)
 — vazio —
 
-## 👀 Revisão (12/5) ⚠️ estouro temporário — lote da madrugada, aguardando ok humano
+## 👀 Revisão (13/5) ⚠️ estouro temporário — lote construído, aguardando ok humano
 - [marmita] **T-023** 🧹 chore · P0 — Setup app Marmita (SvelteKit PWA + shadcn-style + tokens clean)
 - [marmita] **T-024** ✨ feature · P0 — Modelo de dados Marmita + seed
 - [marmita] **T-025** ✨ feature · P1 — Cardápio do ciclo + cliente escolhe 10 pratos
@@ -32,6 +32,7 @@
 - [marmita] **T-033** 🧹 chore · P1 — Limpeza anti-slop (10 métricas)
 - [marmita] **T-035** ✨ feature · P1 — Revisão UI/UX (passos, progresso, voltar, dark)
 - [marmita] **T-036** ✨ feature · P0 — Compartilhar cardápio por link público (backend leve)
+- [marmita] **T-040** ✨ feature · P0 — Modelagem Postgres na Neon (tabelas + drizzle + migrations)
 
 ## ⚡ Fazendo (0/3)
 — vazio —
@@ -68,5 +69,5 @@
 - [taskia] **T-003** spike superado (stack decidida em docs/10) — aposentado, arquivo preservado
 
 ## 🔴 Atenção
-- T-023..T-031 + T-033 + T-035 + T-036 (marmita) em revisão — app no ar em http://localhost:5199/; aguardando ok humano p/ feito. T-032 (validação) e T-034 (demo) por fazer.
+- T-023..T-031 + T-033 + T-035 + T-036 + T-040 (marmita) em revisão — app no ar em http://localhost:5199/ com Neon; aguardando ok humano p/ feito. T-032 (validação) e T-034 (demo) por fazer.
 - T-040 → T-037 → T-038 → T-039 (trilha Postgres+auth, re-refinadas p/ Neon).
