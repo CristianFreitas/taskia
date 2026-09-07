@@ -1,6 +1,6 @@
 import { readdir, readFile, writeFile } from "node:fs/promises";
 import { join, resolve } from "node:path";
-import { parseTask, type Task } from "@taskia/core";
+import { parseConfig, parseTask, type ConfigTaskia, type Task } from "@taskia/core";
 import { paraCard, type CardView } from "$lib/board.js";
 
 function taskiaRoot(): string {
@@ -35,8 +35,26 @@ export async function salvar(arquivo: string, raw: string): Promise<void> {
   await writeFile(arquivo, raw, "utf8");
 }
 
-export async function carregarBoard(root: string = taskiaRoot()): Promise<{ cards: CardView[] }> {
-  const arquivos = await listarArquivos(root);
+export async function carregarConfig(root: string = taskiaRoot()): Promise<ConfigTaskia | null> {
+  try {
+    const parsed = parseConfig(await readFile(join(root, "config.yaml"), "utf8"));
+    return parsed.ok ? parsed.value : null;
+  } catch {
+    return null;
+  }
+}
+
+export async function carregarBoard(
+  root: string = taskiaRoot(),
+): Promise<{ cards: CardView[]; projetos: ConfigTaskia["projetos"] }> {
+  const [arquivos, cfg] = await Promise.all([listarArquivos(root), carregarConfig(root)]);
   const porId = new Map(arquivos.map((a) => [a.task.frontmatter.id, a.task.frontmatter.status]));
-  return { cards: arquivos.map((a) => paraCard(a.task, (id) => porId.get(id) === "feito")) };
+  const corDe = new Map((cfg?.projetos ?? []).map((p) => [p.id, p.cor] as const));
+  const emFeito = (id: string): boolean => porId.get(id) === "feito";
+  const cards = arquivos.map((a) => {
+    const base = paraCard(a.task, emFeito);
+    const proj = base.projeto !== "" ? base.projeto : (cfg?.projeto_padrao ?? "");
+    return { ...base, projeto: proj, projetoCor: corDe.get(proj) ?? "#8A8F98" };
+  });
+  return { cards, projetos: cfg?.projetos ?? [] };
 }

@@ -12,6 +12,7 @@ export class Quadro {
   busca = $state(FILTRO_VAZIO.busca);
   dono = $state(FILTRO_VAZIO.dono);
   prio = $state(FILTRO_VAZIO.prioridade);
+  projeto = $state(FILTRO_VAZIO.projeto);
   novoTitulo = $state("");
   criando = $state(false);
   visao = $state<"kanban" | "lista">("kanban");
@@ -42,7 +43,7 @@ export class Quadro {
   }
 
   get filtrados(): CardView[] {
-    return filtrar(this.obterCards(), { busca: this.busca, dono: this.dono, prioridade: this.prio });
+    return filtrar(this.obterCards(), { busca: this.busca, dono: this.dono, prioridade: this.prio, projeto: this.projeto });
   }
 
   get contadores() {
@@ -65,6 +66,8 @@ export class Quadro {
       status: t.status,
       tipo: t.tipo,
       priority: t.prioridade,
+      projeto: t.projeto,
+      projetoCor: t.projetoCor,
       dono: t.responsavel ?? "—",
       clarity: t.clarity,
       bloqueadas: t.bloqueadas,
@@ -155,6 +158,7 @@ export class Quadro {
     this.busca = FILTRO_VAZIO.busca;
     this.dono = FILTRO_VAZIO.dono;
     this.prio = FILTRO_VAZIO.prioridade;
+    this.projeto = FILTRO_VAZIO.projeto;
   }
 
   observarMoves(api: KanbanInstanceApi): void {

@@ -10,6 +10,7 @@
     busca?: string;
     dono?: string;
     prio?: string;
+    projeto?: string;
     novoTitulo?: string;
     visao?: "kanban" | "lista";
     esquema: "padrao" | "denso" | "zen";
@@ -18,6 +19,7 @@
     abertas: number;
     vazio: boolean;
     contadores: Contador[];
+    projetos: { id: string; nome: string; cor: string }[];
     onCriar: () => void;
     onLimpar: () => void;
     onVisao: (v: "kanban" | "lista") => void;
@@ -28,6 +30,7 @@
     busca = $bindable(""),
     dono = $bindable("todas"),
     prio = $bindable("todas"),
+    projeto = $bindable("todas"),
     novoTitulo = $bindable(""),
     visao = $bindable("kanban"),
     esquema,
@@ -36,6 +39,7 @@
     abertas,
     vazio,
     contadores,
+    projetos,
     onCriar,
     onLimpar,
     onVisao,
@@ -104,6 +108,12 @@
     <option value="P1">P1</option>
     <option value="P2">P2</option>
     <option value="P3">P3</option>
+  </select>
+  <select class="taskia-campo" bind:value={projeto} aria-label="Filtrar por projeto">
+    <option value="todas">todos projetos</option>
+    {#each projetos as p (p.id)}
+      <option value={p.id}>{p.nome}</option>
+    {/each}
   </select>
   <ul class="contadores" aria-label="Tarefas por coluna">
     {#each contadores as c (c.id)}

@@ -4,6 +4,7 @@ titulo: Pesquisar stack do MCP Server
 status: arquivado
 tipo: spike
 prioridade: P2
+projeto: taskia
 responsavel: null
 criado_em: 2026-09-05T08:00:00Z
 atualizado_em: 2026-09-06T00:00:00Z

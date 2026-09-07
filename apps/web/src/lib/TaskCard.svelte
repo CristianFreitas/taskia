@@ -30,6 +30,8 @@
   let tipo = $derived(texto(card.tipo, "feature"));
   let prioridade = $derived(texto(card.priority, "P2"));
   let responsavel = $derived(texto(card.dono, "—"));
+  let projeto = $derived(texto(card.projeto, ""));
+  let projetoCor = $derived(texto(card.projetoCor, "#8A8F98"));
   let clarity = $derived(numero(card.clarity));
   let bloqueadas = $derived(lista(card.bloqueadas));
   let bloqueada = $derived(bloqueadas.length > 0);
@@ -90,6 +92,9 @@
   <div class="badges">
     <span class="badge" style="--st: {cor}">{rotulo}</span>
     <span class="tipo">{tipo}</span>
+    {#if projeto !== ""}
+      <span class="proj" style="--pc: {projetoCor}">{projeto}</span>
+    {/if}
   </div>
   {#if clarity !== null}
     <div class="clarityline">
@@ -190,6 +195,14 @@
   .clarity {
     font-size: 11px;
     color: var(--text-2);
+  }
+  .proj {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--pc);
+    border: 1px solid var(--pc);
+    border-radius: 999px;
+    padding: 0 8px;
   }
   .clarity.baixa {
     color: #f59e0b;

@@ -4,6 +4,7 @@ titulo: Colunas com tema dark próprio (WillowDark + tokens TaskIA + accent por 
 status: feito
 tipo: feature
 prioridade: P0
+projeto: taskia
 responsavel: ia-opencode
 criado_em: 2026-09-06T00:00:00Z
 atualizado_em: 2026-09-06T00:00:00Z

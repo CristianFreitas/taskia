@@ -4,6 +4,7 @@ titulo: Pilotar dual-MCP TaskIA + ai-memory em 1 tarefa real
 status: feito
 tipo: spike
 prioridade: P1
+projeto: taskia
 responsavel: ia-opencode
 criado_em: 2026-09-06T00:00:00Z
 atualizado_em: 2026-09-06T00:00:00Z

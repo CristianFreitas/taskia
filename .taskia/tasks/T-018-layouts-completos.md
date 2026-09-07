@@ -1,13 +1,14 @@
 ---
 id: T-018
 titulo: 2 layouts completos alternativos (/a Linear com sidebar, /b Bento)
-status: revisao
+status: feito
 tipo: feature
 prioridade: P0
+projeto: taskia
 responsavel: ia-opencode
 criado_em: 2026-09-06T00:00:00Z
 atualizado_em: 2026-09-06T00:00:00Z
-versao: 4
+versao: 5
 estimativa: M
 dependencias: []
 tags: [frontend, layout, rotas]
@@ -57,6 +58,7 @@ Humano: "é o layout completo; se achar melhor separar em app pode ser". Decisã
 - 2026-09-06 (ia-opencode): refinando → pronto (clarity 86, sem deps) → fazendo.
 - 2026-09-06 (ia-opencode): implementado (factory Quadro em classe runes, `carregarBoard` em +layout.server, rotas /a e /b, BoardShell compartilhado, ConceitoPage); corrigidos 2 lint (void-arrow, união sem id) + 3 clones (CSS unificado, wrappers finos); / /a /b com 200 + HTML completo; gates verdes; fazendo → revisao.
 - 2026-09-06 (humano): direção rejeitada — não eram páginas-conceito e sim o layout principal como um todo. Rotas /a e /b + ConceitoPage EXCLUÍDOS; mantidos factory, BoardShell, loader e `observarMoves` (refator real, em uso no `/`). Seguir em T-019.
+- 2026-09-06 (humano, via "pode seguir dou meu ok"): aprovado em revisao (DoD ok); revisao → feito. Handoff: concluído.
 
 ## Qualidade (preenchido pela IA ao mover p/ revisao)
 - [x] complexity: oxlint verde; factory e páginas pequenas, sem lógica duplicada

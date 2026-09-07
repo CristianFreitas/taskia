@@ -10,8 +10,8 @@ import {
 } from "@modelcontextprotocol/sdk/types.js";
 import { z } from "zod";
 import { zodToJsonSchema } from "zod-to-json-schema";
-import type { Result, Task } from "@taskia/core";
-import { aplicarMovimento, avaliarClareza, esqueletoNovaTarefa, nomeArquivo, parseTask, verificarQuality } from "@taskia/core";
+import type { ConfigTaskia, Result, Task } from "@taskia/core";
+import { aplicarMovimento, avaliarClareza, esqueletoNovaTarefa, nomeArquivo, parseConfig, parseTask, resolverProjeto, verificarQuality } from "@taskia/core";
 
 const ROOT = process.env["TASKIA_ROOT"] ?? join(process.cwd(), ".taskia");
 const TASKS = join(ROOT, "tasks");
@@ -33,6 +33,16 @@ async function lerTodas(): Promise<Arquivo[]> {
   return Promise.all(
     files.map(async (f) => ({ id: f, arquivo: join(TASKS, f), raw: await readFile(join(TASKS, f), "utf8") })),
   );
+}
+
+async function carregarConfig(): Promise<Result<ConfigTaskia>> {
+  let raw: string;
+  try {
+    raw = await readFile(join(ROOT, "config.yaml"), "utf8");
+  } catch {
+    return { ok: false, error: "VALIDATION: config.yaml não encontrado em .taskia/" };
+  }
+  return parseConfig(raw);
 }
 
 async function carregarTarefa(id: string): Promise<Result<Carregada>> {
@@ -67,8 +77,9 @@ const SCHEMAS = {
     titulo: z.string(),
     tipo: TipoSchema.default("feature"),
     prioridade: PrioridadeSchema.default("P2"),
+    projeto: z.string().optional(),
   }),
-  listar_tarefas: z.object({ status: z.string().optional() }),
+  listar_tarefas: z.object({ status: z.string().optional(), projeto: z.string().optional() }),
   obter_tarefa: z.object({ id: z.string() }),
   atualizar_tarefa: z.object({
     id: z.string(),
@@ -81,7 +92,7 @@ const SCHEMAS = {
   mover_tarefa: z.object({ id: z.string(), para: StatusSchema, motivo: z.string() }),
   comentar_log: z.object({ id: z.string(), autor: z.string(), texto: z.string() }),
   dividir_tarefa: z.object({ id: z.string(), subtarefas: z.array(z.object({ titulo: z.string() })).min(2) }),
-  resumir_quadro: z.object({}),
+  resumir_quadro: z.object({ projeto: z.string().optional() }),
   avaliar_clareza: z.object({ id: z.string() }),
   verificar_qualidade: z.object({ id: z.string(), slop: z.number().default(100) }),
 } as const;
@@ -102,14 +113,18 @@ const DESCRICOES: Record<NomeTool, string> = {
 };
 
 async function criarTarefa(args: z.infer<typeof SCHEMAS.criar_tarefa>): Promise<CallToolResult> {
+  const cfg = await carregarConfig();
+  if (!cfg.ok) return erro(cfg.error);
+  const proj = resolverProjeto(args.projeto ?? "", cfg.value);
+  if (!proj.ok) return erro(proj.error);
   const next = await proximoId();
   const agora = new Date().toISOString();
   await writeFile(
     join(TASKS, nomeArquivo(next, args.titulo)),
-    esqueletoNovaTarefa(next, { titulo: args.titulo, tipo: args.tipo, prioridade: args.prioridade, status: "inbox" }, agora),
+    esqueletoNovaTarefa(next, { titulo: args.titulo, tipo: args.tipo, prioridade: args.prioridade, status: "inbox", projeto: proj.value }, agora),
     "utf8",
   );
-  return texto(`T-${next} criada em inbox.`);
+  return texto(`T-${next} criada em inbox (${proj.value}).`);
 }
 
 async function listarTarefas(args: z.infer<typeof SCHEMAS.listar_tarefas>): Promise<CallToolResult> {
@@ -119,8 +134,9 @@ async function listarTarefas(args: z.infer<typeof SCHEMAS.listar_tarefas>): Prom
     const p = parseTask(t.raw);
     if (!p.ok) continue;
     if (args.status !== undefined && p.value.frontmatter.status !== args.status) continue;
+    if (args.projeto !== undefined && p.value.frontmatter.projeto !== args.projeto) continue;
     const f = p.value.frontmatter;
-    linhas.push(`${f.id} | ${f.status} | ${f.prioridade} | ${f.titulo}`);
+    linhas.push(`${f.id} | ${f.status} | ${f.projeto || "?"} | ${f.prioridade} | ${f.titulo}`);
   }
   return texto(linhas.join("\n") || "vazio");
 }
@@ -164,11 +180,15 @@ async function comentarLog(args: z.infer<typeof SCHEMAS.comentar_log>): Promise<
 async function dividirTarefa(args: z.infer<typeof SCHEMAS.dividir_tarefa>): Promise<CallToolResult> {
   const c = await carregarTarefa(args.id);
   if (!c.ok) return erro(c.error);
+  const cfg = await carregarConfig();
+  if (!cfg.ok) return erro(cfg.error);
+  const proj = resolverProjeto(c.value.task.frontmatter.projeto, cfg.value);
+  if (!proj.ok) return erro(proj.error);
   const agora = new Date().toISOString();
   const filhas: string[] = [];
   for (const sub of args.subtarefas) {
     const next = await proximoId();
-    const esqueleto = esqueletoNovaTarefa(next, { titulo: sub.titulo, tipo: "feature", prioridade: "P2", status: "refinando" }, agora);
+    const esqueleto = esqueletoNovaTarefa(next, { titulo: sub.titulo, tipo: "feature", prioridade: "P2", status: "refinando", projeto: proj.value }, agora);
     await writeFile(join(TASKS, nomeArquivo(next, sub.titulo)), esqueleto, "utf8");
     filhas.push(`T-${next}`);
   }
@@ -179,16 +199,28 @@ async function dividirTarefa(args: z.infer<typeof SCHEMAS.dividir_tarefa>): Prom
   return texto(`${args.id} → ${filhas.join(", ")}.`);
 }
 
-async function resumirQuadro(): Promise<CallToolResult> {
+async function resumirQuadro(args: z.infer<typeof SCHEMAS.resumir_quadro>): Promise<CallToolResult> {
   const todas = await lerTodas();
-  const contagem = new Map<string, number>();
+  const grupos = new Map<string, Map<string, number>>();
   for (const t of todas) {
     const p = parseTask(t.raw);
     if (!p.ok) continue;
-    contagem.set(p.value.frontmatter.status, (contagem.get(p.value.frontmatter.status) ?? 0) + 1);
+    const proj = p.value.frontmatter.projeto || "?";
+    if (args.projeto !== undefined && proj !== args.projeto) continue;
+    let contagem = grupos.get(proj);
+    if (contagem === undefined) {
+      contagem = new Map<string, number>();
+      grupos.set(proj, contagem);
+    }
+    const st = p.value.frontmatter.status;
+    contagem.set(st, (contagem.get(st) ?? 0) + 1);
   }
-  const linhas = [...contagem.entries()].map(([s, n]) => `- ${s}: ${n}`).join("\n");
-  return texto(`# Quadro\n${linhas || "vazio"}`);
+  const blocos: string[] = [];
+  for (const [proj, contagem] of [...grupos.entries()].sort()) {
+    const linhas = [...contagem.entries()].map(([s, n]) => `- ${s}: ${n}`).join("\n");
+    blocos.push(`## ${proj}\n${linhas}`);
+  }
+  return texto(`# Quadro\n${blocos.join("\n") || "vazio"}`);
 }
 
 async function verificarQualidade(args: z.infer<typeof SCHEMAS.verificar_qualidade>): Promise<CallToolResult> {
@@ -232,7 +264,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       case "mover_tarefa": return await moverTarefa(SCHEMAS.mover_tarefa.parse(rawArgs));
       case "comentar_log": return await comentarLog(SCHEMAS.comentar_log.parse(rawArgs));
       case "dividir_tarefa": return await dividirTarefa(SCHEMAS.dividir_tarefa.parse(rawArgs));
-      case "resumir_quadro": return await resumirQuadro();
+      case "resumir_quadro": return await resumirQuadro(SCHEMAS.resumir_quadro.parse(rawArgs));
       case "avaliar_clareza": {
         const c = await carregarTarefa(SCHEMAS.avaliar_clareza.parse(rawArgs).id);
         if (!c.ok) return erro(c.error);

@@ -6,6 +6,7 @@ import { avaliarArquivo, detectarFugaDeTipos, detectarObvios, detectarTextoSlop,
 import { allowedFrom, assertTransition, checkReady } from "../src/transitions.js";
 import { aplicarMovimento } from "../src/mover.js";
 import { esqueletoNovaTarefa, nomeArquivo, slugify } from "../src/nova.js";
+import { parseConfig, resolverProjeto } from "../src/projetos.js";
 import type { Status } from "../src/types.js";
 
 const BASE = `---
@@ -14,6 +15,7 @@ titulo: Implementar login com magic link
 status: fazendo
 tipo: feature
 prioridade: P1
+projeto: taskia
 responsavel: ia-opencode
 criado_em: 2026-09-05T10:00:00Z
 atualizado_em: 2026-09-05T12:00:00Z
@@ -66,6 +68,7 @@ describe("parseTask", () => {
       expect(f.status).toBe("fazendo");
       expect(f.tipo).toBe("feature");
       expect(f.prioridade).toBe("P1");
+      expect(f.projeto).toBe("taskia");
       expect(f.responsavel).toBe("ia-opencode");
       expect(f.versao).toBe(3);
       expect(f.estimativa).toBe("M");
@@ -127,6 +130,7 @@ Cobrir ramos de default.
       const f = parsed.value.frontmatter;
       expect(f.status).toBe(42 as never);
       expect(f.versao).toBe(1);
+      expect(f.projeto).toBe("");
       expect(f.estimativa).toBe("?");
       expect(f.dependencias).toEqual([]);
       expect(f.clarity_score).toBe(0);
@@ -265,11 +269,55 @@ describe("nova", () => {
   });
   it("esqueleto válido que o parse aceita", () => {
     const agora = "2026-09-05T15:00:00Z";
-    const md = esqueletoNovaTarefa("007", { titulo: "Nova", tipo: "bug", prioridade: "P0", status: "inbox" }, agora);
+    const md = esqueletoNovaTarefa("007", { titulo: "Nova", tipo: "bug", prioridade: "P0", status: "inbox", projeto: "taskia" }, agora);
     expect(md).toContain("id: T-007");
     expect(md).toContain("prioridade: P0");
+    expect(md).toContain("projeto: taskia");
     const p = parseTask(md);
     expect(p.ok).toBe(true);
+    if (p.ok) expect(p.value.frontmatter.projeto).toBe("taskia");
+  });
+});
+
+const CFG = `projetos:
+  - { id: taskia, nome: "TaskIA", cor: "#6366F1" }
+  - { id: site, nome: "Site", cor: "#10B981" }
+projeto_padrao: taskia
+`;
+
+describe("projetos", () => {
+  it("parseConfig válido", () => {
+    const r = parseConfig(CFG);
+    expect(r.ok).toBe(true);
+    if (r.ok) {
+      expect(r.value.projeto_padrao).toBe("taskia");
+      expect(r.value.projetos.map((p) => p.id)).toEqual(["taskia", "site"]);
+    }
+  });
+  it("parseConfig rejeita formas inválidas", () => {
+    expect(parseConfig(": [").ok).toBe(false);
+    expect(parseConfig("42").ok).toBe(false);
+    expect(parseConfig("projetos: []\nprojeto_padrao: taskia\n").ok).toBe(false);
+    expect(parseConfig("projetos:\n  - 42\nprojeto_padrao: taskia\n").ok).toBe(false);
+    expect(parseConfig("projetos:\n  - { id: '', nome: X, cor: '#fff' }\nprojeto_padrao: ''\n").ok).toBe(false);
+    expect(parseConfig("projetos:\n  - { id: a, nome: A, cor: '#fff' }\n  - { id: a, nome: B, cor: '#000' }\nprojeto_padrao: a\n").ok).toBe(false);
+    expect(parseConfig("projetos:\n  - { id: a, nome: A, cor: '#fff' }\nprojeto_padrao: b\n").ok).toBe(false);
+    expect(parseConfig("projetos:\n  - { id: a, nome: A, cor: '#fff' }\n").ok).toBe(false);
+  });
+  it("parseConfig aplica defaults de nome e cor", () => {
+    const r = parseConfig("projetos:\n  - { id: x }\nprojeto_padrao: x\n");
+    expect(r.ok).toBe(true);
+    if (r.ok) expect(r.value.projetos[0]).toEqual({ id: "x", nome: "x", cor: "#8A8F98" });
+  });
+  it("resolverProjeto usa padrao, aceita conhecido e rejeita resto", () => {
+    const cfg = parseConfig(CFG);
+    expect(cfg.ok).toBe(true);
+    if (!cfg.ok) return;
+    expect(resolverProjeto("", cfg.value)).toEqual({ ok: true, value: "taskia" });
+    expect(resolverProjeto("site", cfg.value)).toEqual({ ok: true, value: "site" });
+    const r = resolverProjeto("narnia", cfg.value);
+    expect(r.ok).toBe(false);
+    if (!r.ok) expect(r.error).toContain("narnia");
   });
 });
 

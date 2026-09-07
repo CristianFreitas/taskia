@@ -46,11 +46,12 @@ Tarefa `spike/decisao` sem código: marca `quality.status: isento` + motivo no L
 1. Codou → roda `bun run check:T-XXX` (oxlint + tsc + vitest coverage nos tocados + knip + jscpd `--baseline` + stryker `--since main` incremental).
 2. Verde → preenche `## Qualidade`, move `fazendo → revisao` com `motivo` + hash do relatório.
 3. Vermelho → NÃO move. Fica em `fazendo`, loga o que quebrou, quebra a função/arquivo e roda de novo.
+4. Com código ou docs mudados: `git add -A` + commit + `push` ANTES de mover p/ `revisao`. Verificação: `git status --porcelain` vazio e `git rev-list --count origin/main..HEAD` zerado. Sem push, sem `revisao`.
 
 **Nível 2 — Nightly (tendência, 30-60min, não bloqueia PR):**
-4. `stryker run` full + mutation score global. Gate: ≥70% (ratchet +5%/mês até 80%). 90%+ não é meta global (vira teste frágil).
-5. Mutantes equivalentes vão p/ allowlist com motivo — não contam como falha. "0" = 0 sobreviventes **não-justificados**, não 0 matemático. Concretamente em `packages/core/stryker.conf.json`: `mutator.excludedMutations: ["StringLiteral"]` (texto de mensagem de erro é dado, não comportamento; os CÓDIGOS de erro seguem cobertos por asserts `toContain`). Score medido no dogfood: **84.77** (55.99 → 71.07 → 76.86 → 85.39 → 84.77 após fix do Log único; segue ≥70).
-6. Bun + Stryker: plugin vitest-resolver quebra no install isolado do Bun — fixado com path explícito `plugins: ["./node_modules/@stryker-mutator/vitest-runner/dist/src/index.js"]`.
+5. `stryker run` full + mutation score global. Gate: ≥70% (ratchet +5%/mês até 80%). 90%+ não é meta global (vira teste frágil).
+6. Mutantes equivalentes vão p/ allowlist com motivo — não contam como falha. "0" = 0 sobreviventes **não-justificados**, não 0 matemático. Concretamente em `packages/core/stryker.conf.json`: `mutator.excludedMutations: ["StringLiteral"]` (texto de mensagem de erro é dado, não comportamento; os CÓDIGOS de erro seguem cobertos por asserts `toContain`). Score medido no dogfood: **84.77** (55.99 → 71.07 → 76.86 → 85.39 → 84.77 após fix do Log único; segue ≥70).
+7. Bun + Stryker: plugin vitest-resolver quebra no install isolado do Bun — fixado com path explícito `plugins: ["./node_modules/@stryker-mutator/vitest-runner/dist/src/index.js"]`.
 
 Humano (ou 2ª IA) em `revisao` roda `verificar_qualidade` (tool 10 do MCP) que relê o JSON e confirma. Divergiu = volta pra `fazendo`.
 

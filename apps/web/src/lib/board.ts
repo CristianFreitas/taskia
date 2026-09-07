@@ -31,6 +31,8 @@ export interface CardView {
   status: Status;
   tipo: string;
   prioridade: Prioridade;
+  projeto: string;
+  projetoCor: string;
   responsavel: string | null;
   clarity: number;
   bloqueada: boolean;
@@ -41,9 +43,10 @@ interface Filtro {
   busca: string;
   dono: string;
   prioridade: string;
+  projeto: string;
 }
 
-export const FILTRO_VAZIO: Filtro = { busca: "", dono: "todas", prioridade: "todas" };
+export const FILTRO_VAZIO: Filtro = { busca: "", dono: "todas", prioridade: "todas", projeto: "todas" };
 
 function passaBusca(t: CardView, busca: string): boolean {
   if (busca.trim() === "") return true;
@@ -61,7 +64,8 @@ export function filtrar(cards: CardView[], f: Filtro): CardView[] {
     (t) =>
       passaBusca(t, f.busca) &&
       passaDono(t, f.dono) &&
-      (f.prioridade === "todas" || t.prioridade === f.prioridade),
+      (f.prioridade === "todas" || t.prioridade === f.prioridade) &&
+      (f.projeto === "todas" || t.projeto === f.projeto),
   );
 }
 
@@ -86,6 +90,8 @@ export function paraCard(task: Task, emFeito?: (id: string) => boolean): CardVie
     status: f.status,
     tipo: f.tipo,
     prioridade: f.prioridade,
+    projeto: f.projeto,
+    projetoCor: "#8A8F98",
     responsavel: f.responsavel,
     clarity: f.clarity_score,
     bloqueada: bloqueadas.length > 0,

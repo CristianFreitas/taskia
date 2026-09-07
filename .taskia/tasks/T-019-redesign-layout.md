@@ -1,13 +1,14 @@
 ---
 id: T-019
 titulo: Redesign completo do layout principal (cores, estrutura, componentes)
-status: revisao
+status: feito
 tipo: feature
 prioridade: P0
+projeto: taskia
 responsavel: ia-opencode
 criado_em: 2026-09-06T00:00:00Z
 atualizado_em: 2026-09-06T00:00:00Z
-versao: 4
+versao: 5
 estimativa: M
 dependencias: []
 tags: [frontend, layout, ux, visual]
@@ -59,6 +60,7 @@ Tokens oficiais em `.taskia/config.yaml` + `docs/06`. CSS de componente fica no 
 - 2026-09-06: criada refinada (score 87, direção fechada com o humano).
 - 2026-09-06 (ia-opencode): refinando → pronto (clarity 87, sem deps) → fazendo.
 - 2026-09-06 (ia-opencode): implementado (tokens --bg-3/seleção/scrollbar, hover/focus nos controles, colunas com borda+sombra+tint, card com sombra/divisor/faixa, drawer com divisores, tabela sticky+zebra+hover); corrigido hex digitado errado na hora; gates verdes; fazendo → revisao.
+- 2026-09-06 (humano, via "pode seguir dou meu ok"): aprovado em revisao (DoD ok); revisao → feito. Handoff: concluído.
 
 ## Qualidade (preenchido pela IA ao mover p/ revisao)
 - [x] complexity: oxlint verde; só CSS + 0 lógica nova

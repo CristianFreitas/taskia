@@ -4,6 +4,7 @@ titulo: Implementar login com magic link
 status: arquivado
 tipo: feature
 prioridade: P1
+projeto: taskia
 responsavel: null
 criado_em: 2026-09-05T10:00:00Z
 atualizado_em: 2026-09-06T00:00:00Z

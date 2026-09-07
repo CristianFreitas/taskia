@@ -54,6 +54,7 @@ export function mover(id: string, para: Status): Task {
 3. `knip` 0, `jscpd` 0 clones novos.
 4. `stryker run --since main` 0 sobreviventes não-justificados (equivalentes vão p/ allowlist com motivo).
 5. `review:slop` score ≥80. Preencha `## Qualidade` + `## Log` + `Handoff`.
+6. Versione e suba: `git add -A` (confira `git status`: nada estranho) + commit + `push`. Sem push, sem `revisao` — código fora do remoto não existe. Vale p/ qualquer mudança em arquivo (código ou docs).
 
 ## 5. O que NÃO fazer (slop)
 

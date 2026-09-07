@@ -1,12 +1,13 @@
 <script lang="ts">
   import "../theme/taskia.css";
   import type { CardView } from "$lib/board.js";
+  import type { ConfigTaskia } from "@taskia/core";
   import { Quadro } from "$lib/usarQuadro.svelte.js";
   import BoardTopo from "$lib/BoardTopo.svelte";
   import BoardShell from "$lib/BoardShell.svelte";
 
   interface Props {
-    data: { cards: CardView[] };
+    data: { cards: CardView[]; projetos: ConfigTaskia["projetos"] };
   }
   let { data }: Props = $props();
   const q = new Quadro(() => data.cards);
@@ -37,6 +38,7 @@
     bind:busca={q.busca}
     bind:dono={q.dono}
     bind:prio={q.prio}
+    bind:projeto={q.projeto}
     bind:novoTitulo={q.novoTitulo}
     bind:visao={q.visao}
     {esquema}
@@ -44,6 +46,7 @@
     total={q.total}
     abertas={q.abertas}
     contadores={q.contadores}
+    projetos={data.projetos}
     vazio={q.filtrados.length === 0}
     onCriar={() => void q.criar()}
     onLimpar={() => q.limparFiltros()}

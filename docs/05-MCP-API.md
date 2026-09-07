@@ -9,15 +9,16 @@ Servidor: `taskia-mcp` · runtime: **Bun + TypeScript strict** (ver `10-STACK.md
 ### 1. `criar_tarefa`
 Cria `.taskia/tasks/T-XXX-slug.md` com status `inbox`.
 ```json
-{ "titulo": "string (obrigatório)", "tipo": "bug|feature|chore|spike|decisao", "prioridade": "P0|P1|P2|P3", "objetivo": "string", "contexto": "string", "tags": ["string"] }
+{ "titulo": "string (obrigatório)", "tipo": "bug|feature|chore|spike|decisao", "prioridade": "P0|P1|P2|P3", "projeto": "id|null (default projeto_padrao)", "objetivo": "string", "contexto": "string", "tags": ["string"] }
 ```
 Retorna: `{ "id": "T-004", "arquivo": ".taskia/tasks/T-004-slug.md", "clarity_score_inicial": 20 }`
+Erro `VALIDATION` se `projeto` não existe no config.
 
 ### 2. `listar_tarefas`
 ```json
-{ "status": "fazendo|null", "responsavel": "ia-opencode|null", "prioridade": "P0|null", "busca": "texto|null" }
+{ "status": "fazendo|null", "responsavel": "ia-opencode|null", "prioridade": "P0|null", "projeto": "taskia|null", "busca": "texto|null" }
 ```
-Retorna lista resumida (id, titulo, status, prioridade, responsavel, clarity). Sem corpo — economiza tokens.
+Retorna lista resumida (id, titulo, status, projeto, prioridade, responsavel, clarity). Sem corpo — economiza tokens.
 
 ### 3. `obter_tarefa` (Context Pack)
 Retorna frontmatter + corpo COMPLETO + tarefas dependentes resumidas. É o que a IA chama antes de executar.
@@ -45,15 +46,15 @@ Append no `## Log` sem mexer no resto. Barato e seguro p/ progresso.
 ```
 
 ### 7. `dividir_tarefa`
-Quebra tarefa grande em 2+. Original vai pra `arquivado` com link, filhas nascem em `refinando` com `dependencias` ligadas.
+Quebra tarefa grande em 2+. Original vai pra `arquivado` com link, filhas nascem em `refinando` com `dependencias` ligadas e **herdam o `projeto`** da original.
 ```json
 { "id": "T-001", "subtarefas": [{ "titulo": "..." }, { "titulo": "..." }] }
 ```
 
 ### 8. `resumir_quadro`
-Visão p/ daily. Conta por coluna, travadas (>2d em fazendo), bloqueadas, top-3 próximas por prioridade+dependência.
+Visão p/ daily. Conta por coluna, travadas (>2d em fazendo), bloqueadas, top-3 próximas por prioridade+dependência. Agrupa por projeto.
 ```json
-{}
+{ "projeto": "taskia|null (filtra um projeto; omitido = todos)" }
 ```
 Retorna markdown pronto p/ colar no chat + JSON.
 

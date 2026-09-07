@@ -4,6 +4,7 @@ titulo: App shell do board (header, contadores, empty-state, atalhos)
 status: feito
 tipo: feature
 prioridade: P1
+projeto: taskia
 responsavel: ia-opencode
 criado_em: 2026-09-05T03:00:00Z
 atualizado_em: 2026-09-06T00:00:00Z

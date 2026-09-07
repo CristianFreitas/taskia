@@ -4,6 +4,7 @@ titulo: mover anexa ao ## Log existente em vez de duplicar
 status: feito
 tipo: bug
 prioridade: P1
+projeto: taskia
 responsavel: ia-opencode
 criado_em: 2026-09-06T00:00:00Z
 atualizado_em: 2026-09-06T00:00:00Z

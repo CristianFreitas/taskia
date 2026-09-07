@@ -11,6 +11,7 @@ titulo: Implementar login com magic link
 status: fazendo            # inbox | refinando | pronto | fazendo | revisao | feito | arquivado
 tipo: feature              # bug | feature | chore | spike | decisao
 prioridade: P1             # P0-critico | P1-alta | P2-media | P3-baixa
+projeto: taskia            # id em projetos: do config.yaml (ausente/vazio = projeto_padrao)
 responsavel: ia-opencode   # humano | ia-chatgpt | ia-claude | ia-opencode | ia-cursor | null
 criado_em: 2026-09-05T10:00:00Z
 atualizado_em: 2026-09-05T12:00:00Z
@@ -66,6 +67,7 @@ Por que existe? Qual dor? Links, prints, decisões anteriores. É o que evita a 
 
 1. `id` = nome do arquivo. Divergiu → erro.
 2. `status`, `tipo`, `prioridade` só aceitam valores do enum acima.
+2b. `projeto` precisa existir em `projetos:` do config (ausente/vazio = `projeto_padrao`). Desconhecido → `VALIDATION` com a lista válida.
 3. `pronto` exige: `clarity_score >= 70` + `criterios_de_aceite` não-vazio + `dependencias` todas em `feito`.
 4. `fazendo` exige: `responsavel != null` + máximo 1 `fazendo` por `responsavel` (WIP=1 p/ IA).
 5. `revisao` exige: `plano` preenchido + todos os checks de `escopo` marcados ou justificados no Log + `## Qualidade` preenchido + `quality.status: passando` (ou `isento` com motivo).

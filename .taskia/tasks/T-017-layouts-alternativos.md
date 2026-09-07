@@ -1,13 +1,14 @@
 ---
 id: T-017
 titulo: 2 layouts alternativos do board (Denso + Zen) com switcher
-status: revisao
+status: feito
 tipo: feature
 prioridade: P1
+projeto: taskia
 responsavel: ia-opencode
 criado_em: 2026-09-06T00:00:00Z
 atualizado_em: 2026-09-06T00:00:00Z
-versao: 4
+versao: 5
 estimativa: M
 dependencias: []
 tags: [frontend, layout, ux]
@@ -56,6 +57,8 @@ Pesquisa (Linear redesign 2026, uxpatterns.dev, card best practices): densidade 
 - 2026-09-06: criada refinada com pesquisa (score 87).
 - 2026-09-06 (ia-opencode): refinando → pronto (clarity 87, sem deps) → fazendo.
 - 2026-09-06 (ia-opencode): implementado (variantes 100% CSS via `data-layout`, switcher + localStorage, card focável com Enter, `article`→`div` p/ a11y); bundle verificado (seletores + switcher presentes); gates verdes; fazendo → revisao.
+- 2026-09-06 (humano, via "pode seguir dou meu ok"): aprovado em revisao (DoD ok); revisao → feito. Handoff: concluído.
+- 2026-09-06 (humano, via "pode seguir dou meu ok"): aprovado em revisao (DoD ok); revisao → feito. Handoff: concluído.
 
 ## Qualidade (preenchido pela IA ao mover p/ revisao)
 - [x] complexity: oxlint verde; 0 lógica nova (CSS + 2 fns pequenas de persist)

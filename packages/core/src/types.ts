@@ -29,6 +29,7 @@ export interface TaskFrontmatter {
   status: Status;
   tipo: Tipo;
   prioridade: Prioridade;
+  projeto: string;
   responsavel: string | null;
   criado_em: string;
   atualizado_em: string;
@@ -50,6 +51,17 @@ export interface Task {
 export type Result<T, E = string> =
   | { ok: true; value: T }
   | { ok: false; error: E };
+
+export interface Projeto {
+  id: string;
+  nome: string;
+  cor: string;
+}
+
+export interface ConfigTaskia {
+  projetos: Projeto[];
+  projeto_padrao: string;
+}
 
 export interface QualityThresholds {
   cyclomaticMax: number;
