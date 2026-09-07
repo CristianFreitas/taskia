@@ -1,6 +1,7 @@
 import type { Result, Status } from "./types.js";
 import { parseTask } from "./parse-task.js";
 import { assertTransition, checkReady } from "./transitions.js";
+import { sugerirBranch, validarBranch } from "./branch.js";
 
 export interface MovimentoOk {
   raw: string;
@@ -24,6 +25,14 @@ export function aplicarMovimento(
   if (para === "pronto") {
     const ready = checkReady(parsed.value, depsFeitas);
     if (!ready.ok) return ready;
+  }
+  if (para === "fazendo") {
+    const f = parsed.value.frontmatter;
+    const vb = validarBranch(f.branch);
+    if (!vb.ok) {
+      const sugestao = sugerirBranch(f.tipo, f.id, f.titulo);
+      return { ok: false, error: `${vb.error} Sugestão: "${sugestao}". Crie a branch e registre via atualizar_tarefa.` };
+    }
   }
   const versao = parsed.value.frontmatter.versao + 1;
   const atualizado = markdown

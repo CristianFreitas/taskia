@@ -5,6 +5,7 @@ status: arquivado
 tipo: bug
 prioridade: P1
 projeto: taskia
+branch: ""
 responsavel: null
 criado_em: 2026-09-05T09:00:00Z
 atualizado_em: 2026-09-06T00:00:00Z

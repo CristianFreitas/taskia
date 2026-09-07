@@ -3,6 +3,7 @@ export * from "./parse-task.js";
 export * from "./transitions.js";
 export * from "./mover.js";
 export * from "./nova.js";
+export * from "./branch.js";
 export * from "./projetos.js";
 export * from "./quality.js";
 export * from "./clarity.js";

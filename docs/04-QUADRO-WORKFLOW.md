@@ -34,7 +34,8 @@ qualquer → arquivado (com motivo no Log)
 2. **Definition of Ready (p/ ir pra pronto):** clarity ≥70 + aceite testável + sem dependência pendente.
 3. **Definition of Done (p/ ir pra feito):** aceite 100% + log do que foi entregue + sem TODO escondido + humano deu OK em `revisao` + **Quality Gates verdes (ver `09-QUALIDADE.md`): ciclomática <22, cognitiva <22, halstead <80, LOC <500, coverage 100%, CRAP <25, mutantes 0, dead 0, redundant 0, any/unknown 0**.
 4. **Daily da IA:** `resumir_quadro` toda manhã: o que travou, o que está em `fazendo` há >2 dias, próxima sugestão.
-5. **Branch por tarefa:** `feat/T-001-slug` / `fix/T-002-slug`. Commit cita ID. PR cita critérios.
+5. **Branch por tarefa (obrigatória):** prefixo por tipo (`feat|fix|chore|docs|spike`, ex: `feat/T-021-branch-por-tarefa`, `docs/` p/ `decisao`). Cria ao puxar p/ `fazendo`, registra no campo `branch`. Commit cita ID. `feito` exige merge na `main` (`git merge-base --is-ancestor <branch> main`); sem PR obrigatório no solo, merge com `--no-ff`.
+6. **Conflito em arquivos compartilhados** (`board.md`, `decisions.log.md`, `config.yaml`): 1 linha por tarefa cada → auto-merge na maioria. Se conflitar: rebase na `main` e mantenha os dois lados (nunca apague linha alheia).
 
 ## Prioridades (cor da borda esquerda do card)
 

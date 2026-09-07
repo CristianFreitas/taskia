@@ -2,8 +2,8 @@
 
 > Gerado à mão na Fase 0. Na Fase 1 será gerado por `resumir_quadro`.
 
-## 📥 Inbox (0)
-— vazio —
+## 📥 Inbox (1)
+- [taskia] **T-022** 🔬 spike · P2 · ninguém · score 80 — Serializar writes concorrentes no MCP
 
 ## 🔍 Refinando (0)
 — vazio —
@@ -14,8 +14,8 @@
 ## ⚡ Fazendo (0/3)
 — vazio —
 
-## 👀 Revisão (0/5)
-— vazio —
+## 👀 Revisão (1/5)
+- [taskia] **T-021** ✨ feature · P0 · `ia-opencode` · score 88 · quality ✅ — Branch obrigatória por tarefa
 
 ## 🎉 Feito (17)
 - [taskia] **T-004** 🧹 chore · P2 · score 85 — Automatizar cognitive complexity no CI
@@ -42,4 +42,4 @@
 - [taskia] **T-003** spike superado (stack decidida em docs/10) — aposentado, arquivo preservado
 
 ## 🔴 Atenção
-- Quadro limpo: nada em aberto. Novo projeto usa `projetos:` no config. Próxima tarefa será **T-021**.
+- Em `revisao`: **T-021** (aguarda OK humano). Em `inbox`: **T-022** (race MCP, próxima a refinar).

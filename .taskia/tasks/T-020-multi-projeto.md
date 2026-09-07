@@ -4,6 +4,8 @@ titulo: Separar quadro por projeto (multi-projeto no mesmo .taskia)
 status: feito
 tipo: feature
 prioridade: P0
+projeto: taskia
+branch: main
 responsavel: ia-opencode
 criado_em: 2026-09-06T00:00:00Z
 atualizado_em: 2026-09-06T00:00:00Z

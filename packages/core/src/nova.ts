@@ -16,6 +16,7 @@ export interface NovaTarefa {
   prioridade: string;
   status: Status;
   projeto: string;
+  branch?: string;
 }
 
 export function nomeArquivo(next: string, titulo: string): string {
@@ -24,5 +25,6 @@ export function nomeArquivo(next: string, titulo: string): string {
 }
 
 export function esqueletoNovaTarefa(next: string, t: NovaTarefa, agora: string): string {
-  return `---\nid: T-${next}\ntitulo: ${t.titulo}\nstatus: ${t.status}\ntipo: ${t.tipo}\nprioridade: ${t.prioridade}\nprojeto: ${t.projeto}\nresponsavel: null\ncriado_em: ${agora}\natualizado_em: ${agora}\nversao: 1\nestimativa: ?\ndependencias: []\ntags: []\narquivos_relevantes: []\nclarity_score: 20\nquality:\n  status: pendente\n  relatorio: reports/T-${next}-quality.json\n---\n\n## Objetivo\n${t.titulo}\n`;
+  const branch = t.branch ?? "";
+  return `---\nid: T-${next}\ntitulo: ${t.titulo}\nstatus: ${t.status}\ntipo: ${t.tipo}\nprioridade: ${t.prioridade}\nprojeto: ${t.projeto}\nbranch: ${branch}\nresponsavel: null\ncriado_em: ${agora}\natualizado_em: ${agora}\nversao: 1\nestimativa: ?\ndependencias: []\ntags: []\narquivos_relevantes: []\nclarity_score: 20\nquality:\n  status: pendente\n  relatorio: reports/T-${next}-quality.json\n---\n\n## Objetivo\n${t.titulo}\n`;
 }

@@ -5,6 +5,7 @@ status: feito
 tipo: chore
 prioridade: P3
 projeto: taskia
+branch: main
 responsavel: ia-opencode
 criado_em: 2026-09-05T03:00:00Z
 atualizado_em: 2026-09-06T01:11:03.533Z

@@ -44,6 +44,7 @@ function toFrontmatter(raw: Record<string, unknown>): Result<TaskFrontmatter> {
       tipo: (raw["tipo"] ?? "feature") as TaskFrontmatter["tipo"],
       prioridade: (raw["prioridade"] ?? "P2") as TaskFrontmatter["prioridade"],
       projeto: typeof raw["projeto"] === "string" ? raw["projeto"] : "",
+      branch: typeof raw["branch"] === "string" ? raw["branch"] : "",
       responsavel: typeof raw["responsavel"] === "string" ? raw["responsavel"] : null,
       criado_em: typeof raw["criado_em"] === "string" ? raw["criado_em"] : "",
       atualizado_em: typeof raw["atualizado_em"] === "string" ? raw["atualizado_em"] : "",

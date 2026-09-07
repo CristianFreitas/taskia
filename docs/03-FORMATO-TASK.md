@@ -12,6 +12,7 @@ status: fazendo            # inbox | refinando | pronto | fazendo | revisao | fe
 tipo: feature              # bug | feature | chore | spike | decisao
 prioridade: P1             # P0-critico | P1-alta | P2-media | P3-baixa
 projeto: taskia            # id em projetos: do config.yaml (ausente/vazio = projeto_padrao)
+branch: feat/T-021-branch-por-tarefa  # "" até fazendo; formato <feat|fix|chore|docs|spike>/T-XXX-slug
 responsavel: ia-opencode   # humano | ia-chatgpt | ia-claude | ia-opencode | ia-cursor | null
 criado_em: 2026-09-05T10:00:00Z
 atualizado_em: 2026-09-05T12:00:00Z
@@ -68,6 +69,7 @@ Por que existe? Qual dor? Links, prints, decisões anteriores. É o que evita a 
 1. `id` = nome do arquivo. Divergiu → erro.
 2. `status`, `tipo`, `prioridade` só aceitam valores do enum acima.
 2b. `projeto` precisa existir em `projetos:` do config (ausente/vazio = `projeto_padrao`). Desconhecido → `VALIDATION` com a lista válida.
+2c. `branch`: `""` até `pronto`; `fazendo`/`revisao` exigem formato válido (mover p/ `fazendo` sem branch sugere o nome no erro); travada após `fazendo` (só troca antes); `feito` exige merge na `main` (verificado via `git merge-base --is-ancestor`, fora do MCP).
 3. `pronto` exige: `clarity_score >= 70` + `criterios_de_aceite` não-vazio + `dependencias` todas em `feito`.
 4. `fazendo` exige: `responsavel != null` + máximo 1 `fazendo` por `responsavel` (WIP=1 p/ IA).
 5. `revisao` exige: `plano` preenchido + todos os checks de `escopo` marcados ou justificados no Log + `## Qualidade` preenchido + `quality.status: passando` (ou `isento` com motivo).

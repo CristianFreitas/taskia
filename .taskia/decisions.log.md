@@ -27,3 +27,4 @@
 - 2026-09-06 — T-017 layouts Denso/Zen (pesquisa Linear/uxpatterns/cards): variantes 100% CSS via `data-layout`, switcher + localStorage, card focável (article→div p/ a11y); em revisao. Por: IA.
 - 2026-09-06 — Quadro finalizado de novo (aprovação humana "pode seguir"): T-016 em feito. Board: 13 feito, 3 arquivado, 0 em aberto. Próxima: T-017. Por: humano + IA.
 - 2026-09-06 — T-020 multi-projeto executada: `projeto` no frontmatter + `projetos:` no config, MCP criar/listar/resumir/dividir, web filtro+badge+criar, backfill 20 tarefas, stryker 84.89; em revisao. Por: IA.
+- 2026-09-06 — T-021 branch obrigatória executada: `branch.ts` + gate em `aplicarMovimento`, MCP criar/atualizar, backfill, docs 03/04/09; smoke achou bug em atualizar (fix regex de linha) + race pré-existente registrada em T-022 (inbox); em revisao. Por: IA.

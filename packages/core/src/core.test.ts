@@ -7,6 +7,7 @@ import { allowedFrom, assertTransition, checkReady } from "../src/transitions.js
 import { aplicarMovimento } from "../src/mover.js";
 import { esqueletoNovaTarefa, nomeArquivo, slugify } from "../src/nova.js";
 import { parseConfig, resolverProjeto } from "../src/projetos.js";
+import { sugerirBranch, validarBranch } from "../src/branch.js";
 import type { Status } from "../src/types.js";
 
 const BASE = `---
@@ -16,6 +17,7 @@ status: fazendo
 tipo: feature
 prioridade: P1
 projeto: taskia
+branch: feat/T-001-magic-link
 responsavel: ia-opencode
 criado_em: 2026-09-05T10:00:00Z
 atualizado_em: 2026-09-05T12:00:00Z
@@ -69,6 +71,7 @@ describe("parseTask", () => {
       expect(f.tipo).toBe("feature");
       expect(f.prioridade).toBe("P1");
       expect(f.projeto).toBe("taskia");
+      expect(f.branch).toBe("feat/T-001-magic-link");
       expect(f.responsavel).toBe("ia-opencode");
       expect(f.versao).toBe(3);
       expect(f.estimativa).toBe("M");
@@ -112,6 +115,7 @@ estimativa: 42
 dependencias: solta
 tags: solta
 arquivos_relevantes: solta
+branch: 42
 clarity_score: alta
 quality:
   status: 42
@@ -133,6 +137,7 @@ Cobrir ramos de default.
       expect(f.projeto).toBe("");
       expect(f.estimativa).toBe("?");
       expect(f.dependencias).toEqual([]);
+      expect(f.branch).toBe("");
       expect(f.clarity_score).toBe(0);
       expect(f.slop?.score).toBe(90);
       expect(f.slop?.perfil).toBe("custom");
@@ -257,6 +262,14 @@ describe("mover", () => {
     const r = aplicarMovimento(refinando, "pronto", "x", "2026-09-05T14:00:00Z", true);
     expect(r.ok).toBe(false);
   });
+  it("fazendo exige branch com sugestão", () => {
+    const semBranch = BASE.replace("branch: feat/T-001-magic-link\n", "");
+    const r = aplicarMovimento(semBranch.replace("status: fazendo", "status: pronto"), "fazendo", "x", "2026-09-05T14:00:00Z", true);
+    expect(r.ok).toBe(false);
+    if (!r.ok) expect(r.error).toContain("feat/T-001-implementar-login-com-magic-link");
+    const ok = aplicarMovimento(BASE.replace("status: fazendo", "status: pronto"), "fazendo", "x", "2026-09-05T14:00:00Z", true);
+    expect(ok.ok).toBe(true);
+  });
 });
 
 describe("nova", () => {
@@ -269,13 +282,35 @@ describe("nova", () => {
   });
   it("esqueleto válido que o parse aceita", () => {
     const agora = "2026-09-05T15:00:00Z";
-    const md = esqueletoNovaTarefa("007", { titulo: "Nova", tipo: "bug", prioridade: "P0", status: "inbox", projeto: "taskia" }, agora);
+    const md = esqueletoNovaTarefa("007", { titulo: "Nova", tipo: "bug", prioridade: "P0", status: "inbox", projeto: "taskia", branch: "fix/T-007-nova" }, agora);
     expect(md).toContain("id: T-007");
     expect(md).toContain("prioridade: P0");
     expect(md).toContain("projeto: taskia");
+    expect(md).toContain("branch: fix/T-007-nova");
     const p = parseTask(md);
     expect(p.ok).toBe(true);
     if (p.ok) expect(p.value.frontmatter.projeto).toBe("taskia");
+    const semBranch = esqueletoNovaTarefa("008", { titulo: "Outra", tipo: "feature", prioridade: "P2", status: "inbox", projeto: "taskia" }, agora);
+    expect(semBranch).toContain("branch: \n");
+  });
+});
+
+describe("branch", () => {
+  it("validarBranch exige formato", () => {
+    const vazia = validarBranch("");
+    expect(vazia.ok).toBe(false);
+    if (!vazia.ok) expect(vazia.error).toContain("vazia");
+    expect(validarBranch("main-errada").ok).toBe(false);
+    expect(validarBranch("feat/T-1-X").ok).toBe(false);
+    expect(validarBranch("feat/T-021-branch-por-tarefa")).toEqual({ ok: true, value: "feat/T-021-branch-por-tarefa" });
+  });
+  it("sugerirBranch por tipo com fallback", () => {
+    expect(sugerirBranch("feature", "T-001", "Login magic")).toBe("feat/T-001-login-magic");
+    expect(sugerirBranch("bug", "T-002", "WIP")).toBe("fix/T-002-wip");
+    expect(sugerirBranch("chore", "T-003", "X")).toBe("chore/T-003-x");
+    expect(sugerirBranch("spike", "T-004", "Y")).toBe("spike/T-004-y");
+    expect(sugerirBranch("decisao", "T-005", "Z")).toBe("docs/T-005-z");
+    expect(sugerirBranch("feature", "T-006", "!!!")).toBe("feat/T-006-tarefa");
   });
 });
 

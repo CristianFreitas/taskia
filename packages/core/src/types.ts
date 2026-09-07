@@ -30,6 +30,7 @@ export interface TaskFrontmatter {
   tipo: Tipo;
   prioridade: Prioridade;
   projeto: string;
+  branch: string;
   responsavel: string | null;
   criado_em: string;
   atualizado_em: string;

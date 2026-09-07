@@ -11,7 +11,7 @@ import {
 import { z } from "zod";
 import { zodToJsonSchema } from "zod-to-json-schema";
 import type { ConfigTaskia, Result, Task } from "@taskia/core";
-import { aplicarMovimento, avaliarClareza, esqueletoNovaTarefa, nomeArquivo, parseConfig, parseTask, resolverProjeto, verificarQuality } from "@taskia/core";
+import { aplicarMovimento, avaliarClareza, esqueletoNovaTarefa, nomeArquivo, parseConfig, parseTask, resolverProjeto, validarBranch, verificarQuality } from "@taskia/core";
 
 const ROOT = process.env["TASKIA_ROOT"] ?? join(process.cwd(), ".taskia");
 const TASKS = join(ROOT, "tasks");
@@ -78,6 +78,7 @@ const SCHEMAS = {
     tipo: TipoSchema.default("feature"),
     prioridade: PrioridadeSchema.default("P2"),
     projeto: z.string().optional(),
+    branch: z.string().optional(),
   }),
   listar_tarefas: z.object({ status: z.string().optional(), projeto: z.string().optional() }),
   obter_tarefa: z.object({ id: z.string() }),
@@ -88,6 +89,7 @@ const SCHEMAS = {
     estimativa: z.string().optional(),
     clarity_score: z.number().optional(),
     entrada_log: z.string().default(""),
+    branch: z.string().optional(),
   }),
   mover_tarefa: z.object({ id: z.string(), para: StatusSchema, motivo: z.string() }),
   comentar_log: z.object({ id: z.string(), autor: z.string(), texto: z.string() }),
@@ -117,11 +119,16 @@ async function criarTarefa(args: z.infer<typeof SCHEMAS.criar_tarefa>): Promise<
   if (!cfg.ok) return erro(cfg.error);
   const proj = resolverProjeto(args.projeto ?? "", cfg.value);
   if (!proj.ok) return erro(proj.error);
+  const branch = args.branch ?? "";
+  if (branch !== "") {
+    const vb = validarBranch(branch);
+    if (!vb.ok) return erro(vb.error);
+  }
   const next = await proximoId();
   const agora = new Date().toISOString();
   await writeFile(
     join(TASKS, nomeArquivo(next, args.titulo)),
-    esqueletoNovaTarefa(next, { titulo: args.titulo, tipo: args.tipo, prioridade: args.prioridade, status: "inbox", projeto: proj.value }, agora),
+    esqueletoNovaTarefa(next, { titulo: args.titulo, tipo: args.tipo, prioridade: args.prioridade, status: "inbox", projeto: proj.value, branch }, agora),
     "utf8",
   );
   return texto(`T-${next} criada em inbox (${proj.value}).`);
@@ -152,6 +159,14 @@ async function atualizarTarefa(args: z.infer<typeof SCHEMAS.atualizar_tarefa>): 
   if (args.estimativa !== undefined) raw = raw.replace(`estimativa: ${f.estimativa}`, `estimativa: ${args.estimativa}`);
   if (args.clarity_score !== undefined)
     raw = raw.replace(`clarity_score: ${f.clarity_score}`, `clarity_score: ${args.clarity_score}`);
+  if (args.branch !== undefined) {
+    if (f.status === "fazendo" || f.status === "revisao" || f.status === "feito") {
+      return erro("VALIDATION: branch travada após fazendo. Crie nova tarefa linkada.");
+    }
+    const vb = validarBranch(args.branch);
+    if (!vb.ok) return erro(vb.error);
+    raw = raw.replace(/^branch: .*$/m, `branch: ${args.branch}`);
+  }
   const agora = new Date().toISOString();
   raw = raw.replace(/versao: \d+/, `versao: ${f.versao + 1}`).replace(/atualizado_em: .*/, `atualizado_em: ${agora}`);
   if (args.entrada_log !== "") raw = `${raw.trim()}\n\n## Log\n- ${agora} : ${args.entrada_log}\n`;
