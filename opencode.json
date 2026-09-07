@@ -3,7 +3,7 @@
   "mcp": {
     "taskia": {
       "type": "local",
-      "command": ["bun", "run", "apps/mcp/src/index.ts"],
+      "command": ["/home/zatty/.bun/bin/bun", "run", "apps/mcp/src/index.ts"],
       "enabled": true
     }
   }

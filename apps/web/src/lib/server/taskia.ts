@@ -1,6 +1,7 @@
 import { readdir, readFile, writeFile } from "node:fs/promises";
 import { join, resolve } from "node:path";
 import { parseTask, type Task } from "@taskia/core";
+import { paraCard, type CardView } from "$lib/board.js";
 
 function taskiaRoot(): string {
   return process.env["TASKIA_ROOT"] ?? resolve(process.cwd(), "..", "..", ".taskia");
@@ -32,4 +33,10 @@ export async function listarArquivos(root: string = taskiaRoot()): Promise<Arqui
 
 export async function salvar(arquivo: string, raw: string): Promise<void> {
   await writeFile(arquivo, raw, "utf8");
+}
+
+export async function carregarBoard(root: string = taskiaRoot()): Promise<{ cards: CardView[] }> {
+  const arquivos = await listarArquivos(root);
+  const porId = new Map(arquivos.map((a) => [a.task.frontmatter.id, a.task.frontmatter.status]));
+  return { cards: arquivos.map((a) => paraCard(a.task, (id) => porId.get(id) === "feito")) };
 }

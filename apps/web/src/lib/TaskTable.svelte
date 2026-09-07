@@ -56,9 +56,19 @@
     text-transform: uppercase;
     letter-spacing: 0.06em;
     color: var(--text-2);
+    background: var(--bg-2);
+    position: sticky;
+    top: 0;
+    z-index: 1;
   }
   tbody tr:last-child td {
     border-bottom: none;
+  }
+  tbody tr:nth-child(even) td {
+    background: rgb(255 255 255 / 1.5%);
+  }
+  tbody tr:hover td {
+    background: var(--bg-2);
   }
   .link {
     background: none;
@@ -68,5 +78,13 @@
     font-family: "JetBrains Mono", monospace;
     font-size: 12px;
     cursor: pointer;
+    border-radius: 4px;
+  }
+  .link:hover {
+    text-decoration: underline;
+  }
+  .link:focus-visible {
+    outline: 2px solid var(--st-pronto);
+    outline-offset: 1px;
   }
 </style>

@@ -3,6 +3,7 @@
   --bg-0: #0b0d12;
   --bg-1: #12151d;
   --bg-2: #1a1f2b;
+  --bg-3: #232b3d;
   --border: #2a3142;
   --text-1: #f1f5f9;
   --text-2: #94a3b8;
@@ -25,6 +26,30 @@ body {
   background: var(--bg-0);
 }
 
+::selection {
+  background: rgb(99 102 241 / 35%);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--bg-3);
+  border-radius: 999px;
+  border: 2px solid var(--bg-0);
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
 /* SVAR Kanban: tema dark com tokens TaskIA */
 .wx-willow-dark-theme {
   --wx-background: var(--bg-1);
@@ -41,7 +66,11 @@ body {
 
 .wx-kanban .wx-column {
   border-radius: 12px;
+  border: 1px solid var(--border);
   border-top: 2px solid transparent;
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 4%),
+    0 8px 20px rgb(0 0 0 / 25%);
 }
 
 .wx-kanban .wx-column-header {
@@ -50,11 +79,21 @@ body {
   text-transform: uppercase;
   letter-spacing: 0.06em;
   color: var(--text-2);
+  background: rgb(255 255 255 / 2%);
+  border-radius: 12px 12px 0 0;
+}
+
+.wx-kanban .wx-column-header button {
+  border-radius: 6px;
+}
+
+.wx-kanban .wx-column-header button:hover {
+  background: var(--bg-3);
 }
 
 .wx-kanban .wx-column-cards {
   gap: 8px;
-  padding: 4px 8px 12px;
+  padding: 8px 8px 12px;
 }
 
 .tk-col-inbox { border-top-color: #8a8f98; }
@@ -85,6 +124,12 @@ body {
 .taskia-btn {
   padding: 6px 12px;
   cursor: pointer;
+  transition: background-color 150ms cubic-bezier(0.25, 1, 0.5, 1), border-color 150ms cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.taskia-btn:hover:not(:disabled) {
+  background: var(--bg-3);
+  border-color: #3b445c;
 }
 
 .taskia-btn:disabled {
@@ -99,8 +144,18 @@ body {
   font-weight: 600;
 }
 
+.taskia-btn-primario:hover:not(:disabled) {
+  background: #5457e5;
+  border-color: #5457e5;
+}
+
 .taskia-campo {
   padding: 6px 10px;
+  transition: border-color 150ms cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.taskia-campo:hover {
+  border-color: #3b445c;
 }
 
 .taskia-btn:focus-visible,
@@ -143,4 +198,59 @@ body {
 
 .taskia-toast.ok {
   border-color: var(--st-feito);
+}
+
+/* Layout Denso (estilo Linear): linhas compactas, mesma info essencial */
+main[data-layout="denso"] .card {
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 10px;
+}
+main[data-layout="denso"] .card header {
+  flex: none;
+}
+main[data-layout="denso"] .card h3 {
+  flex: 1;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+main[data-layout="denso"] .card .badges {
+  flex: none;
+}
+main[data-layout="denso"] .card footer,
+main[data-layout="denso"] .card .tipo,
+main[data-layout="denso"] .card .clarityline,
+main[data-layout="denso"] .card .selo-ia {
+  display: none;
+}
+main[data-layout="denso"] .card:hover {
+  transform: none;
+}
+main[data-layout="denso"] .card .dono-mini {
+  display: inline;
+  flex: none;
+  max-width: 140px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 11px;
+  color: var(--text-2);
+}
+
+/* Layout Zen: só o essencial, generoso */
+main[data-layout="zen"] .card {
+  padding: 16px 18px;
+  gap: 10px;
+}
+main[data-layout="zen"] .card h3 {
+  font-size: 15px;
+}
+main[data-layout="zen"] .card footer,
+main[data-layout="zen"] .card .tipo,
+main[data-layout="zen"] .card .clarityline,
+main[data-layout="zen"] .card .selo-ia {
+  display: none;
 }

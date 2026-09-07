@@ -135,7 +135,9 @@
   header {
     display: flex;
     justify-content: space-between;
+    align-items: flex-start;
     gap: 12px;
+    padding-bottom: 4px;
   }
   .id {
     font-family: "JetBrains Mono", monospace;
@@ -143,12 +145,15 @@
     color: var(--text-2);
   }
   h2 {
-    margin: 4px 0;
-    font-size: 18px;
+    margin: 4px 0 6px;
+    font-size: 19px;
+    line-height: 1.35;
+    letter-spacing: -0.01em;
     color: var(--text-1);
   }
   .meta {
     font-size: 12px;
+    line-height: 1.7;
     color: var(--text-2);
     margin: 0;
   }
@@ -167,6 +172,10 @@
     letter-spacing: 0.06em;
     color: var(--text-2);
     margin: 0 0 8px;
+  }
+  section + section {
+    border-top: 1px solid var(--border);
+    padding-top: 14px;
   }
   .botoes {
     display: flex;

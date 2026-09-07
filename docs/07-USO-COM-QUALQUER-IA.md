@@ -18,7 +18,7 @@ Primeiro: resuma o quadro em 5 linhas e sugira a próxima ação.
 
 ## Conectar o MCP (pronto, testado via smoke)
 
-**Opencode (este repo já vem plugado):** `opencode.json` na raiz registra o `taskia` (cwd = raiz, `.taskia/` achado sozinho). Abra o repo no Opencode e as 10 tools aparecem. Smoke: `criar_tarefa → listar → mover → transição ilegal bloqueada` OK.
+**Opencode (este repo já vem plugado):** `opencode.json` na raiz registra o `taskia` (caminho absoluto do `bun`, cwd = raiz, `.taskia/` achado sozinho). Se o cliente mostrar `server unavailable`, é PATH: use o caminho absoluto do binário. Abra o repo no Opencode e as 10 tools aparecem. Smoke: `criar_tarefa → listar → mover → transição ilegal bloqueada` OK.
 
 **Claude Desktop / Cursor (`mcp.json`):**
 ```json

@@ -14,8 +14,10 @@
 ## ⚡ Fazendo (0/3)
 — vazio —
 
-## 👀 Revisão (0/5)
-— vazio —
+## 👀 Revisão (3/5)
+- **T-017** ✨ feature · P1 · `ia-opencode` · score 87 · quality ✅ — 2 layouts alternativos (Denso + Zen)
+- **T-018** ✨ feature · P0 · `ia-opencode` · score 86 · quality ✅ — Factory + rotas conceito (rotas excluídas; refator mantido)
+- **T-019** ✨ feature · P0 · `ia-opencode` · score 87 · quality ✅ — Redesign completo do layout principal
 
 ## 🎉 Feito (13)
 - **T-004** 🧹 chore · P2 · score 85 — Automatizar cognitive complexity no CI
@@ -38,4 +40,4 @@
 - **T-003** spike superado (stack decidida em docs/10) — aposentado, arquivo preservado
 
 ## 🔴 Atenção
-- Quadro limpo: nada em aberto. Próxima tarefa será **T-017**.
+- Em `revisao`: **T-017**, **T-018**, **T-019** (aguardam OK humano). Próxima tarefa será **T-020**.

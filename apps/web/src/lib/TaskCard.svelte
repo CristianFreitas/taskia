@@ -50,11 +50,32 @@
     const dx = e.clientX - downX;
     const dy = e.clientY - downY;
     if (dx * dx + dy * dy > 36) return;
+    abrir();
+  }
+
+  function abrir(): void {
     window.dispatchEvent(new CustomEvent<string>("taskia:abrir", { detail: id }));
+  }
+
+  function aoTeclar(e: KeyboardEvent): void {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      abrir();
+    }
   }
 </script>
 
-<article class="card" class:bloqueado={bloqueada} style="--prio: {corPrioridade}" onpointerdown={aoPressionar} onpointerup={aoSoltar}>
+<div
+  class="card"
+  class:bloqueado={bloqueada}
+  style="--prio: {corPrioridade}"
+  role="button"
+  tabindex="0"
+  aria-label="Abrir {id}: {titulo}"
+  onpointerdown={aoPressionar}
+  onpointerup={aoSoltar}
+  onkeydown={aoTeclar}
+>
   {#if bloqueada}
     <div class="faixa">🔴 aguarda {bloqueadas.join(", ")}</div>
   {/if}
@@ -65,23 +86,24 @@
     {/if}
   </header>
   <h3>{titulo}</h3>
+  <span class="dono-mini">{responsavel}</span>
   <div class="badges">
     <span class="badge" style="--st: {cor}">{rotulo}</span>
     <span class="tipo">{tipo}</span>
-    {#if clarity !== null}
-      <span class="clarity" class:baixa={clarity < 70}>clarity {clarity}</span>
-    {/if}
   </div>
   {#if clarity !== null}
-    <div class="claritybar" role="img" aria-label="clarity {clarity} de 100">
-      <span class:baixa={clarity < 70} style="width: {Math.min(100, Math.max(0, clarity))}%"></span>
+    <div class="clarityline">
+      <span class="clarity" class:baixa={clarity < 70}>clarity {clarity}</span>
+      <div class="claritybar" role="img" aria-label="clarity {clarity} de 100">
+        <span class:baixa={clarity < 70} style="width: {Math.min(100, Math.max(0, clarity))}%"></span>
+      </div>
     </div>
   {/if}
   <footer>
     <span class="dono">{eIA ? "🤖" : "🧑"} {responsavel}</span>
     <span class="prio">{prioridade}</span>
   </footer>
-</article>
+</div>
 
 <style>
   .card {
@@ -89,26 +111,33 @@
     border: 1px solid var(--border);
     border-left: 3px solid var(--prio);
     border-radius: 10px;
-    padding: 10px 12px;
+    padding: 10px 12px 11px;
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 7px;
     font-size: 13px;
-    transition: transform 150ms cubic-bezier(0.25, 1, 0.5, 1), box-shadow 150ms cubic-bezier(0.25, 1, 0.5, 1);
+    box-shadow: 0 1px 2px rgb(0 0 0 / 25%);
+    transition: transform 150ms cubic-bezier(0.25, 1, 0.5, 1), box-shadow 150ms cubic-bezier(0.25, 1, 0.5, 1), border-color 150ms cubic-bezier(0.25, 1, 0.5, 1);
   }
   .card:hover {
     transform: translateY(-1px);
-    box-shadow: 0 4px 14px rgb(0 0 0 / 35%);
+    box-shadow: 0 6px 18px rgb(0 0 0 / 40%);
+    border-color: #3b445c;
+  }
+  .card:focus-visible {
+    outline: 2px solid var(--st-pronto);
+    outline-offset: 1px;
   }
   .card.bloqueado {
     border-color: var(--alerta);
   }
   .faixa {
     background: rgb(239 68 68 / 12%);
-    color: var(--alerta);
+    border: 1px solid rgb(239 68 68 / 35%);
+    color: #fca5a5;
     font-size: 11px;
     font-weight: 700;
-    padding: 2px 8px;
+    padding: 3px 8px;
     border-radius: 6px;
   }
   header {
@@ -120,6 +149,9 @@
     font-family: "JetBrains Mono", monospace;
     font-size: 11px;
     color: var(--text-2);
+  }
+  .dono-mini {
+    display: none;
   }
   .selo-ia {
     background: linear-gradient(135deg, #8b5cf6, #6366f1);
@@ -133,6 +165,7 @@
     margin: 0;
     font-size: 13px;
     font-weight: 600;
+    line-height: 1.45;
     color: var(--text-1);
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -162,7 +195,16 @@
     color: #f59e0b;
     font-weight: 700;
   }
+  .clarityline {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .clarityline .clarity {
+    flex: none;
+  }
   .claritybar {
+    flex: 1;
     height: 4px;
     border-radius: 999px;
     background: var(--border);
@@ -179,8 +221,12 @@
   footer {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     font-size: 11px;
     color: var(--text-2);
+    border-top: 1px solid var(--border);
+    padding-top: 7px;
+    margin-top: 1px;
   }
   .prio {
     font-weight: 700;

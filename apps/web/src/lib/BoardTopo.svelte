@@ -12,6 +12,7 @@
     prio?: string;
     novoTitulo?: string;
     visao?: "kanban" | "lista";
+    esquema: "padrao" | "denso" | "zen";
     criando: boolean;
     total: number;
     abertas: number;
@@ -20,6 +21,7 @@
     onCriar: () => void;
     onLimpar: () => void;
     onVisao: (v: "kanban" | "lista") => void;
+    onEsquema: (v: "padrao" | "denso" | "zen") => void;
   }
 
   let {
@@ -28,6 +30,7 @@
     prio = $bindable("todas"),
     novoTitulo = $bindable(""),
     visao = $bindable("kanban"),
+    esquema,
     criando,
     total,
     abertas,
@@ -36,6 +39,7 @@
     onCriar,
     onLimpar,
     onVisao,
+    onEsquema,
   }: Props = $props();
 
   let buscaEl = $state<HTMLInputElement | null>(null);
@@ -64,9 +68,16 @@
       <p>{total} tarefas · {abertas} em aberto</p>
     </div>
   </div>
-  <div class="toggle" role="group" aria-label="Alternar visão">
-    <button class="taskia-btn" class:ativo={visao === "kanban"} onclick={() => onVisao("kanban")}>Kanban</button>
-    <button class="taskia-btn" class:ativo={visao === "lista"} onclick={() => onVisao("lista")}>Lista</button>
+  <div class="toggles">
+    <div class="toggle" role="group" aria-label="Alternar visão">
+      <button class="taskia-btn" class:ativo={visao === "kanban"} onclick={() => onVisao("kanban")}>Kanban</button>
+      <button class="taskia-btn" class:ativo={visao === "lista"} onclick={() => onVisao("lista")}>Lista</button>
+    </div>
+    <div class="toggle" role="group" aria-label="Alternar layout">
+      <button class="taskia-btn" class:ativo={esquema === "padrao"} onclick={() => onEsquema("padrao")}>Padrão</button>
+      <button class="taskia-btn" class:ativo={esquema === "denso"} onclick={() => onEsquema("denso")}>Denso</button>
+      <button class="taskia-btn" class:ativo={esquema === "zen"} onclick={() => onEsquema("zen")}>Zen</button>
+    </div>
   </div>
 </header>
 
@@ -148,11 +159,13 @@
   }
   .marca h1 {
     margin: 0;
-    font-size: 20px;
-    letter-spacing: -0.01em;
+    font-size: 19px;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    line-height: 1.2;
   }
   .marca p {
-    margin: 2px 0 0;
+    margin: 1px 0 0;
     font-size: 12px;
     color: var(--text-2);
   }
@@ -166,6 +179,7 @@
     border-radius: 12px;
     padding: 10px 12px;
     margin-bottom: 16px;
+    box-shadow: 0 8px 20px rgb(0 0 0 / 22%);
   }
   .busca {
     display: flex;
@@ -197,6 +211,11 @@
     border-radius: 999px;
     padding: 4px 10px;
     white-space: nowrap;
+    transition: border-color 150ms cubic-bezier(0.25, 1, 0.5, 1), color 150ms cubic-bezier(0.25, 1, 0.5, 1);
+  }
+  .contadores li:hover {
+    border-color: #3b445c;
+    color: var(--text-1);
   }
   .contadores i {
     width: 8px;
@@ -220,6 +239,11 @@
   .toggle {
     display: flex;
     width: fit-content;
+  }
+  .toggles {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
   }
   .toggle .taskia-btn {
     border-radius: 0;

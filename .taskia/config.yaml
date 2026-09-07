@@ -12,7 +12,7 @@ tipos: [feature, bug, chore, spike, decisao]
 prioridades: [P0, P1, P2, P3]
 wip_por_responsavel_em_fazendo: 1
 clarity_minimo_para_pronto: 70
-sequencia_proximo_id: 17
+sequencia_proximo_id: 20
 stack:
   runtime: bun
   linguagem: typescript-strict
