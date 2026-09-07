@@ -18,7 +18,7 @@
 - [marmita] **T-029** ✨ feature · P1 · score 83 — Painel cozinheira: montar e publicar cardápio
 - [marmita] **T-030** ✨ feature · P0 · score 87 — Lista por cliente + TRAVA anti-esquecimento
 - [marmita] **T-031** 🧹 chore · P2 · score 81 — Gates + PWA offline + a11y + 360px
-- [marmita] **T-032** 🔬 spike · P1 · score 82 — Levantar possíveis clientes (validação)
+- [marmita] **T-032** 🔬 spike · P1 · score 83 — Levantar cozinheiras clientes B2B (assinatura)
 - [marmita] **T-033** 🧹 chore · P1 · score 84 — Limpeza anti-slop (10 métricas)
 
 ## ⚡ Fazendo (0/3)

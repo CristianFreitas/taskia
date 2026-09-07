@@ -1,6 +1,6 @@
 ---
 id: T-032
-titulo: Levantar possíveis clientes (validação com quem já paga)
+titulo: Levantar cozinheiras clientes B2B (assinatura)
 status: pronto
 tipo: spike
 prioridade: P1
@@ -9,44 +9,45 @@ branch: ""
 responsavel: null
 criado_em: 2026-09-06T00:00:00Z
 atualizado_em: 2026-09-06T00:00:00Z
-versao: 2
+versao: 3
 estimativa: P
 dependencias: []
-tags: [validacao, clientes, discovery]
+tags: [validacao, b2b, assinatura, discovery]
 arquivos_relevantes: []
-clarity_score: 82
+clarity_score: 83
 quality:
   status: pendente
   relatorio: ""
 ---
 
 ## Objetivo
-Sair do achismo: listar quem compraria/usaria o app primeiro e validar com 5 conversas reais.
+Validar o modelo B2B: cozinheiras pagando assinatura mensal pelo app, com 5 conversas reais.
 
 ## Contexto
-Cliente zero mais barato: quem JÁ paga os R$400 dela (confiança pronta, dor conhecida). Segundo anel: indicações dessas clientes (mães ocupadas, quem faz dieta, idosos que recebem marmita, pequenos escritórios). Sem código nesta tarefa — é conversa + planilha.
+Modelo corrigido: quem PAGA é a cozinheira (assinatura); os clientes finais dela usam grátis. Cliente zero/parceira de design: a cozinheira atual (dor real, confiança pronta). Alvo: cozinheiras que vendem marmita/planos (ex: R$400 = 10 pratos/ciclo) e sofrem com cardápio + lista manual no WhatsApp. Sem código — conversa + planilha. Faixa de preço da assinatura a descobrir (âncora: fração de um plano vendido).
 
 ## Escopo
-- [ ] Mapear base atual dela (quantas clientes ativas, perfil, quem reclama de escolha/lista hoje)
-- [ ] Roteiro curto de 5 perguntas (dor da escolha, dor da lista, usaria app, pagaria a mais, indica quem)
-- [ ] 5 conversas + registro das respostas (planilha simples)
-- [ ] Lista final: early adopters (top 3–5 nomes) + 2 perfis de expansão + objeções ouvidas
+- [ ] Mapear 10+ cozinheiras candidatas (região, vende plano/marmita, opera no WhatsApp hoje)
+- [ ] Roteiro de 5 perguntas (como monta cardápio hoje, já esqueceu ingrediente, pagaria assinatura, quanto, o que a faria cancelar)
+- [ ] 5 conversas + registro (planilha simples) + descoberta de faixa de preço
+- [ ] Lista final: 2–3 parceiras de design nomeadas + objeções + preço-âncora encontrado
 
 ## Fora de escopo
-- Código, preço do app, contrato, marketing
+- Código, contrato, cobrança recorrente, integração com Listou (futuro registrado, não agora)
 
 ## Critérios de aceite (Done)
-- [ ] Dadas 5 conversas, quando consolido, então ≥3 confirmam que escolher pelo celular + receber lista seria melhor que hoje
-- [ ] Dada a base, quando termino, então entrego lista de 3–5 early adopters nomeados + 2 perfis de expansão
+- [ ] Dadas 5 conversas, quando consolido, então ≥3 confirmam a dor (cardápio/lista manual) + topam pagar assinatura em alguma faixa
+- [ ] Dada a descoberta, quando termino, então entrego faixa de preço + 2–3 parceiras de design nomeadas
 - [ ] Dadas objeções, quando registro, então cada uma tem resposta ou vira item de produto (nova tarefa linkada)
 
 ## Plano
-1. Mapear base + roteiro
-2. Conversar + consolidar + listar adopters
+1. Mapear candidatas + roteiro
+2. Conversar + consolidar preço e parceiras
 
 ## Handoff para próxima IA
-Se validação falhar (<3 sim), NÃO codar o resto — voltar com os aprendizados e repriorizar. Faça esta tarefa antes da T-025.
+Se validação falhar (<3 dispostas a pagar), NÃO codar o resto — voltar com aprendizados e repriorizar. Faça esta antes da T-025. Cliente zero = cozinheira atual.
 
 ## Log
 - 2026-09-06 (ia-opencode): criada refinada (score 82).
 - 2026-09-06 (ia-opencode): movida refinando → pronto (score 82 ≥ 70, aceite testável, sem deps).
+- 2026-09-06 (ia-opencode): pivô B2B (humano) — pagante é a cozinheira por assinatura, não o consumidor; cliente zero = atual; Listou = integração futura. Versão 3, score 83.
