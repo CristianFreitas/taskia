@@ -1,13 +1,13 @@
 ---
 id: T-022
 titulo: Serializar writes concorrentes no MCP (race read-modify-write)
-status: revisao
+status: feito
 tipo: spike
 prioridade: P2
 responsavel: ia-opencode
 criado_em: 2026-09-06T00:00:00Z
 atualizado_em: 2026-09-06T00:00:00Z
-versao: 4
+versao: 5
 estimativa: M
 dependencias: []
 tags: [mcp, concorrencia]
@@ -51,6 +51,7 @@ Server stdio processa requests em paralelo (Bun async intercala nos awaits). `at
 - 2026-09-06 (ia-opencode): criada a partir do smoke da T-021 (score 80).
 - 2026-09-06 (ia-opencode): inbox → refinando → pronto (clarity 80, sem deps) → fazendo. Escolha: lockfile (cobre 2 processos; fila só cobre 1; CAS exige atomicidade que fs puro não dá).
 - 2026-09-06 (ia-opencode): implementado (`lock.ts` + 1 lock por board nos 5 handlers, `executarEscrita`+`comTarefa` p/ zerar clones); smoke 5 writes pipelinados → v2..v6 sem lost-update, sem lock residual; fazendo → revisao.
+- 2026-09-06 (humano, via "ok"): aprovado em revisao (DoD ok); revisao → feito. Handoff: concluído.
 
 ## Qualidade (preenchido pela IA ao mover p/ revisao)
 - [x] complexity: oxlint verde; lock.ts fns pequenas (tentar/obsoleto/soltar/comLock)

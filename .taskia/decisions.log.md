@@ -30,3 +30,4 @@
 - 2026-09-06 — T-021 branch obrigatória executada: `branch.ts` + gate em `aplicarMovimento`, MCP criar/atualizar, backfill, docs 03/04/09; smoke achou bug em atualizar (fix regex de linha) + race pré-existente registrada em T-022 (inbox); em revisao. Por: IA.
 - 2026-09-06 — Finalizado (aprovação humana "ok"): T-021 em feito. Board: 18 feito, 3 arquivado, 1 inbox (T-022). Próxima: T-023. Por: humano + IA.
 - 2026-09-06 — T-022 race executada: lockfile único por board (`lock.ts`, stale 5s, timeout 5s tipado) nos 5 handlers + helpers `executarEscrita`/`comTarefa`; smoke 5 pipelinados → v2..v6 sem lost-update; em revisao. Por: IA.
+- 2026-09-06 — Finalizado (aprovação humana "ok"): T-022 em feito. Board: 19 feito, 3 arquivado, 0 em aberto. Próxima: T-023. Por: humano + IA.

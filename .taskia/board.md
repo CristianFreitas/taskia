@@ -14,8 +14,10 @@
 ## ⚡ Fazendo (0/3)
 — vazio —
 
-## 👀 Revisão (1/5)
-- [taskia] **T-022** 🔬 spike · P2 · `ia-opencode` · score 80 · quality ✅ — Serializar writes concorrentes no MCP
+## 👀 Revisão (0/5)
+— vazio —
+
+## 🎉 Feito (19)
 
 ## 🎉 Feito (18)
 - [taskia] **T-004** 🧹 chore · P2 · score 85 — Automatizar cognitive complexity no CI
@@ -36,6 +38,7 @@
 - [taskia] **T-019** ✨ feature · P0 · score 87 — Redesign completo do layout principal
 - [taskia] **T-020** ✨ feature · P0 · score 87 — Separar quadro por projeto
 - [taskia] **T-021** ✨ feature · P0 · score 88 — Branch obrigatória por tarefa
+- [taskia] **T-022** 🔬 spike · P2 · score 80 — Serializar writes concorrentes no MCP
 
 ## 📦 Arquivado (3)
 - [taskia] **T-001** exemplo do scaffold (magic link fictício) — aposentado, arquivo preservado
@@ -43,4 +46,4 @@
 - [taskia] **T-003** spike superado (stack decidida em docs/10) — aposentado, arquivo preservado
 
 ## 🔴 Atenção
-- Em `revisao`: **T-022** (aguarda OK humano). Próxima tarefa será **T-023**.
+- Quadro limpo: nada em aberto. Próxima tarefa será **T-023**.
