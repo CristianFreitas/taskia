@@ -9,9 +9,9 @@ branch: "t-039-antiflood"
 responsavel: null
 criado_em: 2026-09-07T16:25:30.303Z
 atualizado_em: 2026-09-07T16:26:20.466Z
-versao: 4
+versao: 5
 estimativa: P
-dependencias: []
+dependencias: [T-040]
 tags: [abuso, rate-limit, link-publico]
 arquivos_relevantes: [marmita-ratelimit, api-escolhas]
 clarity_score: 83
@@ -28,7 +28,7 @@ Cliente é anônimo por decisão (sem login = sem fricção), então a porta abe
 
 ## Escopo
 - [ ] Limitador em memória (IP + rota, janela deslizante; 429 com `Retry-After`) nas rotas públicas e de auth
-- [ ] Idempotência curta: mesma (código+nome) 1 confirmação/min; teto/dia por código configurável
+- [ ] Idempotência curta: mesma (código+nome) 1 confirmação/min; teto/dia por código via `count` no Postgres (configurável)
 - [ ] Testes 100% do limitador (estoura, reseta após janela, IPs isolados)
 - [ ] Log discreto de bloqueios (contagem, sem PII além de IP)
 
@@ -46,9 +46,10 @@ Cliente é anônimo por decisão (sem login = sem fricção), então a porta abe
 2. Plugar nas rotas + log de bloqueios
 
 ## Handoff para próxima IA
-Repo /home/zatty/marmita, branch t-039-antiflood. Janela em memória zera no restart — documentado como limite aceito (persistir é T-futura).
+Repo /home/zatty/marmita, branch t-039-antiflood. Requer T-040 (count no banco). Janela em memória zera no restart — limite aceito (persistir é T-futura).
 
 ## Log
 - 2026-09-07 (ia-opencode): criada refinada (score 83, v2). ID corrigido (colisão na criação paralela).
 - 2026-09-07T16:26:14.360Z : mover → refinando. Motivo: score 83, sem deps
 - 2026-09-07T16:26:20.466Z : mover → pronto. Motivo: DoR ok
+- 2026-09-07 (ia-opencode): re-refino Postgres (v5) — teto/dia via count no banco, dep T-040, score mantido 83.
