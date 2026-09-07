@@ -1,15 +1,15 @@
 ---
 id: T-037
 titulo: Login da cozinheira (cadastro, sessão, guards)
-status: pronto
+status: revisao
 tipo: feature
 prioridade: P0
 projeto: marmita
 branch: "t-037-login"
 responsavel: null
 criado_em: 2026-09-07T16:25:30.294Z
-atualizado_em: 2026-09-07T16:26:15.871Z
-versao: 5
+atualizado_em: 2026-09-07T18:07:39.433Z
+versao: 7
 estimativa: M
 dependencias: [T-040]
 tags: [auth, cozinheira, sessao]
@@ -53,3 +53,5 @@ Repo /home/zatty/marmita, branch t-037-login. Requer T-040 (tabelas). T-038 vem 
 - 2026-09-07T16:26:10.535Z : mover → refinando. Motivo: score 86, aceite testavel, sem deps
 - 2026-09-07T16:26:15.871Z : mover → pronto. Motivo: DoR ok
 - 2026-09-07 (ia-opencode): re-refino Postgres (v5) — sessões na tabela `sessoes`, dep T-040, score mantido 86.
+- 2026-09-07T17:53:41.696Z : mover → fazendo. Motivo: inicio login da cozinheira
+- 2026-09-07T18:07:39.433Z : mover → revisao. Motivo: e2e auth ok (303/401/ola), gates verdes, merge main
