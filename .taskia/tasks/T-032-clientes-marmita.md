@@ -9,7 +9,7 @@ branch: ""
 responsavel: null
 criado_em: 2026-09-06T00:00:00Z
 atualizado_em: 2026-09-06T00:00:00Z
-versao: 3
+versao: 4
 estimativa: P
 dependencias: []
 tags: [validacao, b2b, assinatura, discovery]
@@ -51,3 +51,4 @@ Se validação falhar (<3 dispostas a pagar), NÃO codar o resto — voltar com 
 - 2026-09-06 (ia-opencode): criada refinada (score 82).
 - 2026-09-06 (ia-opencode): movida refinando → pronto (score 82 ≥ 70, aceite testável, sem deps).
 - 2026-09-06 (ia-opencode): pivô B2B (humano) — pagante é a cozinheira por assinatura, não o consumidor; cliente zero = atual; Listou = integração futura. Versão 3, score 83.
+- 2026-09-06 (ia-opencode): levantamento inicial pronto em ai-memory `notes/marmita-leads-2026-09-06.md` (14 perfis SJC+SP, 4 com fone confirmado, abordagem 1:1 definida; ninguém contatado). Versão 4.
