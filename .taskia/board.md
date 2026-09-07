@@ -15,7 +15,7 @@
 ## ⚡ Fazendo (0/3)
 — vazio —
 
-## 👀 Revisão (10/5) ⚠️ estouro temporário — lote da madrugada, aguardando ok humano
+## 👀 Revisão (11/5) ⚠️ estouro temporário — lote da madrugada, aguardando ok humano
 - [marmita] **T-023** 🧹 chore · P0 — Setup app Marmita (SvelteKit PWA + shadcn-style + tokens clean)
 - [marmita] **T-024** ✨ feature · P0 — Modelo de dados Marmita + seed
 - [marmita] **T-025** ✨ feature · P1 — Cardápio do ciclo + cliente escolhe 10 pratos
@@ -26,6 +26,7 @@
 - [marmita] **T-030** ✨ feature · P0 — Lista por cliente + TRAVA anti-esquecimento
 - [marmita] **T-031** 🧹 chore · P2 — Gates + PWA offline + a11y + 360px
 - [marmita] **T-033** 🧹 chore · P1 — Limpeza anti-slop (10 métricas)
+- [marmita] **T-035** ✨ feature · P1 — Revisão UI/UX (passos, progresso, voltar, dark)
 
 ## ⚡ Fazendo (0/3)
 — vazio —
@@ -62,4 +63,4 @@
 - [taskia] **T-003** spike superado (stack decidida em docs/10) — aposentado, arquivo preservado
 
 ## 🔴 Atenção
-- T-023..T-031 + T-033 (marmita) em revisão — app funcional em /home/zatty/marmita, merge na main; aguardando ok humano p/ feito. T-032 (validação) e T-034 (demo) por fazer.
+- T-023..T-031 + T-033 + T-035 (marmita) em revisão — app funcional em /home/zatty/marmita no ar em http://localhost:5199/; aguardando ok humano p/ feito. T-032 (validação) e T-034 (demo) por fazer.
