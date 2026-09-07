@@ -12,9 +12,11 @@ import { z } from "zod";
 import { zodToJsonSchema } from "zod-to-json-schema";
 import type { ConfigTaskia, Result, Task } from "@taskia/core";
 import { aplicarMovimento, avaliarClareza, esqueletoNovaTarefa, nomeArquivo, parseConfig, parseTask, resolverProjeto, validarBranch, verificarQuality } from "@taskia/core";
+import { comLock } from "./lock.js";
 
 const ROOT = process.env["TASKIA_ROOT"] ?? join(process.cwd(), ".taskia");
 const TASKS = join(ROOT, "tasks");
+const BOARD_LOCK = join(ROOT, ".board");
 
 interface Arquivo {
   id: string;
@@ -66,6 +68,28 @@ function erro(text: string): CallToolResult {
 
 function texto(text: string): CallToolResult {
   return { content: [{ type: "text", text }] };
+}
+
+async function executarEscrita(fn: () => Promise<Result<string>>): Promise<CallToolResult> {
+  const r = await comLock(BOARD_LOCK, fn);
+  if (!r.ok) return erro(r.error);
+  return texto(r.value);
+}
+
+async function atualOuErro(id: string): Promise<Carregada | string> {
+  const atual = await carregarTarefa(id);
+  if (!atual.ok) return atual.error;
+  return atual.value;
+}
+
+async function comTarefa(id: string, fn: (atual: Carregada) => Promise<Result<string>>): Promise<CallToolResult> {
+  const c = await carregarTarefa(id);
+  if (!c.ok) return erro(c.error);
+  return executarEscrita(async (): Promise<Result<string>> => {
+    const atual = await atualOuErro(id);
+    if (typeof atual === "string") return { ok: false, error: atual };
+    return fn(atual);
+  });
 }
 
 const TipoSchema = z.enum(["feature", "bug", "chore", "spike", "decisao"]);
@@ -124,14 +148,16 @@ async function criarTarefa(args: z.infer<typeof SCHEMAS.criar_tarefa>): Promise<
     const vb = validarBranch(branch);
     if (!vb.ok) return erro(vb.error);
   }
-  const next = await proximoId();
-  const agora = new Date().toISOString();
-  await writeFile(
-    join(TASKS, nomeArquivo(next, args.titulo)),
-    esqueletoNovaTarefa(next, { titulo: args.titulo, tipo: args.tipo, prioridade: args.prioridade, status: "inbox", projeto: proj.value, branch }, agora),
-    "utf8",
-  );
-  return texto(`T-${next} criada em inbox (${proj.value}).`);
+  return executarEscrita(async (): Promise<Result<string>> => {
+    const next = await proximoId();
+    const agora = new Date().toISOString();
+    await writeFile(
+      join(TASKS, nomeArquivo(next, args.titulo)),
+      esqueletoNovaTarefa(next, { titulo: args.titulo, tipo: args.tipo, prioridade: args.prioridade, status: "inbox", projeto: proj.value, branch }, agora),
+      "utf8",
+    );
+    return { ok: true, value: `T-${next} criada em inbox (${proj.value}).` };
+  });
 }
 
 async function listarTarefas(args: z.infer<typeof SCHEMAS.listar_tarefas>): Promise<CallToolResult> {
@@ -149,47 +175,47 @@ async function listarTarefas(args: z.infer<typeof SCHEMAS.listar_tarefas>): Prom
 }
 
 async function atualizarTarefa(args: z.infer<typeof SCHEMAS.atualizar_tarefa>): Promise<CallToolResult> {
-  const c = await carregarTarefa(args.id);
-  if (!c.ok) return erro(c.error);
-  let raw = c.value.raw;
-  const f = c.value.task.frontmatter;
-  if (args.titulo !== undefined) raw = raw.replace(`titulo: ${f.titulo}`, `titulo: ${args.titulo}`);
-  if (args.responsavel !== undefined)
-    raw = raw.replace(`responsavel: ${f.responsavel ?? "null"}`, `responsavel: ${args.responsavel ?? "null"}`);
-  if (args.estimativa !== undefined) raw = raw.replace(`estimativa: ${f.estimativa}`, `estimativa: ${args.estimativa}`);
-  if (args.clarity_score !== undefined)
-    raw = raw.replace(`clarity_score: ${f.clarity_score}`, `clarity_score: ${args.clarity_score}`);
-  if (args.branch !== undefined) {
-    if (f.status === "fazendo" || f.status === "revisao" || f.status === "feito") {
-      return erro("VALIDATION: branch travada após fazendo. Crie nova tarefa linkada.");
+  return comTarefa(args.id, async (atual) => {
+    let raw = atual.raw;
+    const f = atual.task.frontmatter;
+    if (args.titulo !== undefined) raw = raw.replace(`titulo: ${f.titulo}`, `titulo: ${args.titulo}`);
+    if (args.responsavel !== undefined)
+      raw = raw.replace(`responsavel: ${f.responsavel ?? "null"}`, `responsavel: ${args.responsavel ?? "null"}`);
+    if (args.estimativa !== undefined) raw = raw.replace(`estimativa: ${f.estimativa}`, `estimativa: ${args.estimativa}`);
+    if (args.clarity_score !== undefined)
+      raw = raw.replace(`clarity_score: ${f.clarity_score}`, `clarity_score: ${args.clarity_score}`);
+    if (args.branch !== undefined) {
+      if (f.status === "fazendo" || f.status === "revisao" || f.status === "feito") {
+        return { ok: false, error: "VALIDATION: branch travada após fazendo. Crie nova tarefa linkada." };
+      }
+      const vb = validarBranch(args.branch);
+      if (!vb.ok) return { ok: false, error: vb.error };
+      raw = raw.replace(/^branch: .*$/m, `branch: ${args.branch}`);
     }
-    const vb = validarBranch(args.branch);
-    if (!vb.ok) return erro(vb.error);
-    raw = raw.replace(/^branch: .*$/m, `branch: ${args.branch}`);
-  }
-  const agora = new Date().toISOString();
-  raw = raw.replace(/versao: \d+/, `versao: ${f.versao + 1}`).replace(/atualizado_em: .*/, `atualizado_em: ${agora}`);
-  if (args.entrada_log !== "") raw = `${raw.trim()}\n\n## Log\n- ${agora} : ${args.entrada_log}\n`;
-  await writeFile(c.value.arquivo, raw, "utf8");
-  return texto(`${args.id} atualizada (v${f.versao + 1}).`);
+    const agora = new Date().toISOString();
+    raw = raw.replace(/versao: \d+/, `versao: ${f.versao + 1}`).replace(/atualizado_em: .*/, `atualizado_em: ${agora}`);
+    if (args.entrada_log !== "") raw = `${raw.trim()}\n\n## Log\n- ${agora} : ${args.entrada_log}\n`;
+    await writeFile(atual.arquivo, raw, "utf8");
+    return { ok: true, value: `${args.id} atualizada (v${f.versao + 1}).` };
+  });
 }
 
 async function moverTarefa(args: z.infer<typeof SCHEMAS.mover_tarefa>): Promise<CallToolResult> {
-  const c = await carregarTarefa(args.id);
-  if (!c.ok) return erro(c.error);
-  const m = aplicarMovimento(c.value.raw, args.para, args.motivo, new Date().toISOString(), true);
-  if (!m.ok) return erro(m.error);
-  await writeFile(c.value.arquivo, m.value.raw, "utf8");
-  return texto(`${args.id} → ${args.para} ok (v${m.value.versao}).`);
+  return comTarefa(args.id, async (atual) => {
+    const m = aplicarMovimento(atual.raw, args.para, args.motivo, new Date().toISOString(), true);
+    if (!m.ok) return { ok: false, error: m.error };
+    await writeFile(atual.arquivo, m.value.raw, "utf8");
+    return { ok: true, value: `${args.id} → ${args.para} ok (v${m.value.versao}).` };
+  });
 }
 
 async function comentarLog(args: z.infer<typeof SCHEMAS.comentar_log>): Promise<CallToolResult> {
-  const c = await carregarTarefa(args.id);
-  if (!c.ok) return erro(c.error);
-  const linha = `- ${new Date().toISOString()} (${args.autor}): ${args.texto}\n`;
-  const raw = c.value.raw.includes("## Log") ? `${c.value.raw.trim()}\n${linha}` : `${c.value.raw.trim()}\n\n## Log\n${linha}`;
-  await writeFile(c.value.arquivo, raw, "utf8");
-  return texto(`${args.id}: log anexado.`);
+  return comTarefa(args.id, async (atual) => {
+    const linha = `- ${new Date().toISOString()} (${args.autor}): ${args.texto}\n`;
+    const raw = atual.raw.includes("## Log") ? `${atual.raw.trim()}\n${linha}` : `${atual.raw.trim()}\n\n## Log\n${linha}`;
+    await writeFile(atual.arquivo, raw, "utf8");
+    return { ok: true, value: `${args.id}: log anexado.` };
+  });
 }
 
 async function dividirTarefa(args: z.infer<typeof SCHEMAS.dividir_tarefa>): Promise<CallToolResult> {
@@ -199,19 +225,23 @@ async function dividirTarefa(args: z.infer<typeof SCHEMAS.dividir_tarefa>): Prom
   if (!cfg.ok) return erro(cfg.error);
   const proj = resolverProjeto(c.value.task.frontmatter.projeto, cfg.value);
   if (!proj.ok) return erro(proj.error);
-  const agora = new Date().toISOString();
-  const filhas: string[] = [];
-  for (const sub of args.subtarefas) {
-    const next = await proximoId();
-    const esqueleto = esqueletoNovaTarefa(next, { titulo: sub.titulo, tipo: "feature", prioridade: "P2", status: "refinando", projeto: proj.value }, agora);
-    await writeFile(join(TASKS, nomeArquivo(next, sub.titulo)), esqueleto, "utf8");
-    filhas.push(`T-${next}`);
-  }
-  const arquivada = c.value.raw
-    .replace(`status: ${c.value.task.frontmatter.status}`, "status: arquivado")
-    .replace(/atualizado_em: .*/, `atualizado_em: ${agora}`);
-  await writeFile(c.value.arquivo, `${arquivada.trim()}\n\n## Log\n- ${agora} : dividida em ${filhas.join(", ")}.\n`, "utf8");
-  return texto(`${args.id} → ${filhas.join(", ")}.`);
+  return executarEscrita(async (): Promise<Result<string>> => {
+    const agora = new Date().toISOString();
+    const filhas: string[] = [];
+    for (const sub of args.subtarefas) {
+      const next = await proximoId();
+      const esqueleto = esqueletoNovaTarefa(next, { titulo: sub.titulo, tipo: "feature", prioridade: "P2", status: "refinando", projeto: proj.value }, agora);
+      await writeFile(join(TASKS, nomeArquivo(next, sub.titulo)), esqueleto, "utf8");
+      filhas.push(`T-${next}`);
+    }
+    const atual = await atualOuErro(args.id);
+    if (typeof atual === "string") return { ok: false, error: atual };
+    const arquivada = atual.raw
+      .replace(`status: ${atual.task.frontmatter.status}`, "status: arquivado")
+      .replace(/atualizado_em: .*/, `atualizado_em: ${agora}`);
+    await writeFile(atual.arquivo, `${arquivada.trim()}\n\n## Log\n- ${agora} : dividida em ${filhas.join(", ")}.\n`, "utf8");
+    return { ok: true, value: `${args.id} → ${filhas.join(", ")}.` };
+  });
 }
 
 async function resumirQuadro(args: z.infer<typeof SCHEMAS.resumir_quadro>): Promise<CallToolResult> {

@@ -1,13 +1,13 @@
 ---
 id: T-022
 titulo: Serializar writes concorrentes no MCP (race read-modify-write)
-status: inbox
+status: revisao
 tipo: spike
 prioridade: P2
-responsavel: null
+responsavel: ia-opencode
 criado_em: 2026-09-06T00:00:00Z
 atualizado_em: 2026-09-06T00:00:00Z
-versao: 1
+versao: 4
 estimativa: M
 dependencias: []
 tags: [mcp, concorrencia]
@@ -15,7 +15,7 @@ arquivos_relevantes:
   - apps/mcp/src/index.ts
 clarity_score: 80
 quality:
-  status: isento
+  status: passando
   relatorio: ""
 projeto: taskia
 branch: ""
@@ -49,3 +49,11 @@ Server stdio processa requests em paralelo (Bun async intercala nos awaits). `at
 
 ## Log
 - 2026-09-06 (ia-opencode): criada a partir do smoke da T-021 (score 80).
+- 2026-09-06 (ia-opencode): inbox → refinando → pronto (clarity 80, sem deps) → fazendo. Escolha: lockfile (cobre 2 processos; fila só cobre 1; CAS exige atomicidade que fs puro não dá).
+- 2026-09-06 (ia-opencode): implementado (`lock.ts` + 1 lock por board nos 5 handlers, `executarEscrita`+`comTarefa` p/ zerar clones); smoke 5 writes pipelinados → v2..v6 sem lost-update, sem lock residual; fazendo → revisao.
+
+## Qualidade (preenchido pela IA ao mover p/ revisao)
+- [x] complexity: oxlint verde; lock.ts fns pequenas (tentar/obsoleto/soltar/comLock)
+- [x] coverage: n/a código novo só no MCP (sem suite; coberto por smoke); core 100% mantido
+- [x] dead 0 (knip), redundant 0 (jscpd 0 — 3 rodadas de dedup), any/unknown 0 (tsc+eslint verdes)
+- [x] `review:slop` 100 · smoke concorrente 5/5 · docs/05 com nota do lock

@@ -38,6 +38,7 @@ Erro `STALE_VERSION` se versão divergir. Erro `VALIDATION` com motivo legível.
 { "id": "T-001", "para": "revisao", "motivo": "implementação pronta", "responsavel": "ia-opencode" }
 ```
 Valida máquina de estados + DoR/DoD + WIP + dependências. Erro explica: ex. `BLOQUEADO: depende de T-002 (pronto, não feito)`.
+Escritas (`criar/mover/atualizar/comentar/dividir`) passam por lockfile único do board (`.board.lock`, stale >5s assumido, timeout 5s vira erro — nunca hang), então chamadas concorrentes não perdem update.
 
 ### 6. `comentar_log`
 Append no `## Log` sem mexer no resto. Barato e seguro p/ progresso.
