@@ -8,7 +8,7 @@
 ## 🔍 Refinando (0)
 — vazio —
 
-## ✅ Pronto (9)
+## ✅ Pronto (11)
 - [marmita] **T-023** 🧹 chore · P0 · score 85 — Setup app Marmita (SvelteKit PWA + shadcn-svelte + tokens clean)
 - [marmita] **T-024** ✨ feature · P0 · score 86 — Modelo de dados Marmita + seed
 - [marmita] **T-025** ✨ feature · P1 · score 84 — Cardápio do ciclo + cliente escolhe 10 pratos
@@ -18,6 +18,8 @@
 - [marmita] **T-029** ✨ feature · P1 · score 83 — Painel cozinheira: montar e publicar cardápio
 - [marmita] **T-030** ✨ feature · P0 · score 87 — Lista por cliente + TRAVA anti-esquecimento
 - [marmita] **T-031** 🧹 chore · P2 · score 81 — Gates + PWA offline + a11y + 360px
+- [marmita] **T-032** 🔬 spike · P1 · score 82 — Levantar possíveis clientes (validação)
+- [marmita] **T-033** 🧹 chore · P1 · score 84 — Limpeza anti-slop (10 métricas)
 
 ## ⚡ Fazendo (0/3)
 — vazio —
@@ -54,4 +56,4 @@
 - [taskia] **T-003** spike superado (stack decidida em docs/10) — aposentado, arquivo preservado
 
 ## 🔴 Atenção
-- T-023..T-031 (marmita) prontas p/ execução — ordem sugerida: T-023, T-024, resto em qualquer ordem (T-030 é a killer feature).
+- T-023..T-033 (marmita) prontas — ordem sugerida: T-032 (validação) e T-023/T-024 primeiro; T-030 é a killer feature; T-033 certifica as 10 métricas.
