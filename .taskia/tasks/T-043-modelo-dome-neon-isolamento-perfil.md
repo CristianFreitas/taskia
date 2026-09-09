@@ -67,4 +67,4 @@ Concluído, em revisao. Commits c2ec9cd + d026ed4 (git local, sem remote). Neon 
 - 2026-09-09T02:25:00Z : mover → pronto. Motivo: DoR ok (clarity 87>=70, critérios testáveis, dep T-042 em feito).
 - 2026-09-09T02:25:00Z : mover → fazendo. Motivo: inicio modelo Neon, testes via PGlite local (sem DATABASE_URL do Dome ainda).
 - 2026-09-09T02:32:06Z : mover → revisao. Motivo: 7 tabelas + migrate do zero no PGlite + isolamento e cascade testados, coverage 100%, commits d026ed4/c2ec9cd. Falta só Neon real (humano).
-- 2026-09-09T02:40:00Z : mover → feito (com ressalva). Motivo: humano mandou seguir; modelo validado 100% no PGlite. Sync no Neon real vira T-050 (aguarda DATABASE_URL do humano).
+- 2026-09-09T02:40:00Z : mover → feito (com ressalva). Motivo: humano mandou seguir; modelo validado 100% no PGlite. Sync no Neon real vira T-056 (aguarda DATABASE_URL do humano).

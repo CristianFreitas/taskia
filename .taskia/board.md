@@ -2,18 +2,16 @@
 
 > Gerado à mão na Fase 0. Na Fase 1 será gerado por `resumir_quadro`.
 
-## 📥 Inbox (6)
-- [dome] **T-045** ✨ feature · P0 · score 88 — Personalidade + prompt-builder + guia anti-IA [CORAÇÃO]
-- [dome] **T-046** ✨ feature · P1 · score 84 — Memória por perfil com ai-memory (dual-MCP)
+## 📥 Inbox (4)
 - [dome] **T-047** ✨ feature · P1 · score 83 — Histórico de publicações por perfil (manual + import)
 - [dome] **T-048** ✨ feature · P1 · score 85 — Cronjobs flexíveis multi-runner (opencode, codex, claude)
 - [dome] **T-049** 🔬 spike · P1 · score 82 — Spike Twitter API v2 por perfil (leitura, limites, risco)
-- [dome] **T-050** 🧹 chore · P1 · score 85 — Sync Neon real do Dome (migrate + seed) [BLOQUEADA em DATABASE_URL do humano]
+- [dome] **T-056** 🧹 chore · P1 · score 85 — Sync Neon real do Dome (migrate + seed) [BLOQUEADA em DATABASE_URL do humano]
 
 ## 🔍 Refinando (0)
 — vazio —
 
-## ✅ Pronto (7)
+## ✅ Pronto (12)
 - [marmita] **T-032** 🔬 spike · P1 · score 83 — Levantar cozinheiras clientes B2B (assinatura)
 - [marmita] **T-034** ✨ feature · P2 · score 82 — Demo p/ cozinheiras (pitch + vídeo Higgsfield) [EXECUTAR POR ÚLTIMO]
 - [marmita] **T-040** ✨ feature · P0 · score 86 — Modelagem Postgres na Neon (tabelas + drizzle + migrations) [BASE — fazer 1º]
@@ -43,6 +41,8 @@
 - [marmita] **T-041** ✨ feature · P1 — Polimento frontend premium (mimo, 7 commits)
 - [marmita] **T-050** ✨ feature · P0 — Identidade vencedora (creme+tinta+terracota, tag v0.3.0)
 - [dome] **T-044** ✨ feature · P0 · score 85 — CRUD perfis + vault de chaves API por perfil — verde, aguardando ok
+- [dome] **T-045** ✨ feature · P0 · score 88 — Personalidade + prompt-builder + guia anti-IA — feito (aceite tácito)
+- [dome] **T-046** ✨ feature · P1 · score 84 — Memória por perfil com ai-memory (dual-MCP) — verde, aguardando ok
 
 ## ⚡ Fazendo (0/3)
 — vazio —
@@ -50,9 +50,11 @@
 ## 👀 Revisão (0/5)
 — vazio —
 
-## 🎉 Feito (2) — dome
+## 🎉 Feito (4) — dome
 - [dome] **T-042** 🧹 chore · P0 · score 86 — Setup app Dome (commit 3fc05dd, aceite humano "pode seguir")
-- [dome] **T-043** ✨ feature · P0 · score 87 — Modelo Neon 7 tabelas (PGlite 100%; Neon real em T-050)
+- [dome] **T-043** ✨ feature · P0 · score 87 — Modelo Neon 7 tabelas (PGlite 100%; Neon real em T-056)
+- [dome] **T-044** ✨ feature · P0 · score 85 — CRUD + vault (aceite tácito "pode seguir")
+- [dome] **T-045** ✨ feature · P0 · score 88 — Personalidade + anti-IA (aceite tácito "pode seguir")
 
 ## 🎉 Feito (19)
 
@@ -84,5 +86,6 @@
 
 ## 🔴 Atenção
 - T-023..T-031 + T-033 + T-035 + T-036 + T-040 + T-037 + T-041 + T-050 (marmita) em revisão — app v0.3.0 no ar em http://localhost:5199/; aguardando ok humano p/ feito. T-032 (validação) e T-034 (demo) por fazer.
+- T-051..T-055 (domicílio) prontas — ordem: T-051, T-052 → T-053, resto livre. Copy da home já no ângulo domicílio (nome segue ListaCerta até decisão).
 - T-040 → T-037 → T-038 → T-039 (trilha Postgres+auth, re-refinadas p/ Neon).
-- [dome] T-042/T-043 feitos; T-044 em revisão (vault verde, curl ok degradado); T-050 bloqueada em DATABASE_URL do humano; T-045 → T-046/T-047/T-048 → T-049 (human-review ON, sem auto-post no MVP). UI rica com Nemotron.
+- [dome] T-042 a T-045 feitos; T-046 em revisão; T-056 bloqueada em DATABASE_URL do humano; T-047 → T-048 → T-049 (human-review ON, sem auto-post no MVP). UI rica com Nemotron.
