@@ -1,15 +1,15 @@
 ---
 id: T-051
 titulo: Confirmação de compra pelo cliente (anti-visita-perdida)
-status: pronto
+status: revisao
 tipo: feature
 prioridade: P0
 projeto: marmita
 branch: "t-051-confirma"
 responsavel: null
 criado_em: 2026-09-09T13:25:42.932Z
-atualizado_em: 2026-09-09T13:26:50.564Z
-versao: 4
+atualizado_em: 2026-09-09T14:04:59.757Z
+versao: 6
 estimativa: M
 dependencias: []
 tags: [visita, confirmacao, cliente]
@@ -52,3 +52,5 @@ Repo /home/zatty/marmita, branch t-051-confirma. Coluna nova (migration drizzle)
 - 2026-09-09 (ia-opencode): criada refinada do campo domicílio (score 86, v2).
 - 2026-09-09T13:26:39.343Z : mover → refinando. Motivo: DoR ok
 - 2026-09-09T13:26:50.564Z : mover → pronto. Motivo: DoR ok
+- 2026-09-09T13:55:06.009Z : mover → fazendo. Motivo: inicio confirmacao de compra
+- 2026-09-09T14:04:59.757Z : mover → revisao. Motivo: e2e Neon ok, gates verdes, merge main
