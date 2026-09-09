@@ -13,10 +13,11 @@ prioridades: [P0, P1, P2, P3]
 projetos:
   - { id: taskia, nome: "TaskIA", cor: "#6366F1" }
   - { id: marmita, nome: "Marmita", cor: "#F97316" }
+  - { id: dome, nome: "Dome", cor: "#10B981" }
 projeto_padrao: taskia
 wip_por_responsavel_em_fazendo: 1
 clarity_minimo_para_pronto: 70
-sequencia_proximo_id: 42
+sequencia_proximo_id: 50
 stack:
   runtime: bun
   linguagem: typescript-strict

@@ -1,9 +1,15 @@
-# Quadro TaskIA — 06/09/2026
+# Quadro TaskIA — 09/09/2026
 
 > Gerado à mão na Fase 0. Na Fase 1 será gerado por `resumir_quadro`.
 
-## 📥 Inbox (0)
-— vazio —
+## 📥 Inbox (7)
+- [dome] **T-043** ✨ feature · P0 · score 87 — Modelo de dados Dome + isolamento por perfil (Neon + drizzle)
+- [dome] **T-044** ✨ feature · P0 · score 85 — CRUD perfis + vault de chaves API por perfil
+- [dome] **T-045** ✨ feature · P0 · score 88 — Personalidade + prompt-builder + guia anti-IA [CORAÇÃO]
+- [dome] **T-046** ✨ feature · P1 · score 84 — Memória por perfil com ai-memory (dual-MCP)
+- [dome] **T-047** ✨ feature · P1 · score 83 — Histórico de publicações por perfil (manual + import)
+- [dome] **T-048** ✨ feature · P1 · score 85 — Cronjobs flexíveis multi-runner (opencode, codex, claude)
+- [dome] **T-049** 🔬 spike · P1 · score 82 — Spike Twitter API v2 por perfil (leitura, limites, risco)
 
 ## 🔍 Refinando (0)
 — vazio —
@@ -20,7 +26,7 @@
 ## ⚡ Fazendo (0/3)
 — vazio —
 
-## 👀 Revisão (14/5) ⚠️ estouro temporário — lote construído, aguardando ok humano
+## 👀 Revisão (15/5) ⚠️ estouro temporário — lote construído, aguardando ok humano
 - [marmita] **T-023** 🧹 chore · P0 — Setup app Marmita (SvelteKit PWA + shadcn-style + tokens clean)
 - [marmita] **T-024** ✨ feature · P0 — Modelo de dados Marmita + seed
 - [marmita] **T-025** ✨ feature · P1 — Cardápio do ciclo + cliente escolhe 10 pratos
@@ -35,6 +41,8 @@
 - [marmita] **T-036** ✨ feature · P0 — Compartilhar cardápio por link público (backend leve)
 - [marmita] **T-040** ✨ feature · P0 — Modelagem Postgres na Neon (tabelas + drizzle + migrations)
 - [marmita] **T-037** ✨ feature · P0 — Login da cozinheira (cadastro, sessão, guards)
+- [marmita] **T-041** ✨ feature · P1 — Polimento frontend premium (mimo, 7 commits)
+- [dome] **T-042** 🧹 chore · P0 · score 86 — Setup app Dome (SvelteKit + Bun + gates + tokens) — verde, aguardando ok
 
 ## ⚡ Fazendo (0/3)
 — vazio —
@@ -71,5 +79,6 @@
 - [taskia] **T-003** spike superado (stack decidida em docs/10) — aposentado, arquivo preservado
 
 ## 🔴 Atenção
-- T-023..T-031 + T-033 + T-035 + T-036 + T-040 + T-037 (marmita) em revisão — app no ar em http://localhost:5199/ com Neon+login; aguardando ok humano p/ feito. T-032 (validação) e T-034 (demo) por fazer.
+- T-023..T-031 + T-033 + T-035 + T-036 + T-040 + T-037 + T-041 (marmita) em revisão — app no ar em http://localhost:5199/ com Neon+login+visual premium; aguardando ok humano p/ feito. T-032 (validação) e T-034 (demo) por fazer.
 - T-040 → T-037 → T-038 → T-039 (trilha Postgres+auth, re-refinadas p/ Neon).
+- [dome] T-042 em revisão (setup verde, commit local sem remote); T-043 → T-044/T-045 → T-046/T-047/T-048 → T-049 (human-review ON, sem auto-post no MVP). UI rica com Nemotron (HANDOFF-NEMOTRON no repo).

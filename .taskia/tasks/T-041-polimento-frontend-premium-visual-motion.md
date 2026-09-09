@@ -1,15 +1,15 @@
 ---
 id: T-041
 titulo: Polimento frontend premium (visual + motion + estados)
-status: pronto
+status: revisao
 tipo: feature
 prioridade: P1
 projeto: marmita
 branch: "t-041-front"
 responsavel: null
 criado_em: 2026-09-09T01:48:19.066Z
-atualizado_em: 2026-09-09T01:48:34.791Z
-versao: 4
+atualizado_em: 2026-09-09T02:13:23.816Z
+versao: 6
 estimativa: M
 dependencias: []
 tags: [frontend, visual, ux]
@@ -55,3 +55,5 @@ Branch `t-041-front` a partir da `main` (= `v0.2.0`). Commits por tela, merge co
 - 2026-09-09 (ia-opencode): criada refinada p/ mimoV2.5 (score 84, v2).
 - 2026-09-09T01:48:32.389Z : mover → refinando. Motivo: escopo de polimento definido p/ mimo
 - 2026-09-09T01:48:34.791Z : mover → pronto. Motivo: DoR ok
+- 2026-09-09T02:06:56.316Z : mover → fazendo. Motivo: disparo do worker frontend (mimo)
+- 2026-09-09T02:13:23.816Z : mover → revisao. Motivo: mimo entregou 7 commits, gates verificados (100/0/0/0), merge main
