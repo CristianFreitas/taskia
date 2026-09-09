@@ -1,15 +1,15 @@
 ---
 id: T-042
 titulo: Setup app Dome (SvelteKit + Bun + gates + tokens)
-status: revisao
+status: feito
 tipo: chore
 prioridade: P0
 projeto: dome
 branch: "feat/T-042-setup-dome"
 responsavel: ia-opencode
 criado_em: 2026-09-09T01:53:00Z
-atualizado_em: 2026-09-09T02:10:57Z
-versao: 3
+atualizado_em: 2026-09-09T02:25:00Z
+versao: 4
 estimativa: P
 dependencias: []
 tags: [setup, sveltekit, bun, gates]
@@ -65,3 +65,4 @@ Concluído, em revisao. Repo /home/zatty/dome, git local main commit 3fc05dd (se
 - 2026-09-09T02:08:30Z : mover → pronto. Motivo: DoR ok (clarity 86>=70, critérios testáveis, sem deps).
 - 2026-09-09T02:08:30Z : mover → fazendo. Motivo: inicio setup Dome, branch feat/T-042-setup-dome. Frontend rico fica com nemotron (handoff).
 - 2026-09-09T02:10:57Z : mover → revisao. Motivo: setup verde (check 0, coverage 100%, knip 0, jscpd 0, sem hex fora de tokens), commit local 3fc05dd sem remote (gh é Dexco). UI rica com Nemotron.
+- 2026-09-09T02:25:00Z : mover → feito. Motivo: humano mandou seguir ("pode seguir com as tarefas") = aceite do setup verde em http://localhost:5201/. Entregue: esqueleto SvelteKit+Bun+tokens+health+db:conectar, commit 3fc05dd. Handoff limpo.
