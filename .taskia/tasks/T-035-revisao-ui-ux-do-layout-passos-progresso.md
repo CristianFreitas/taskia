@@ -8,8 +8,8 @@ projeto: marmita
 branch: "t-035-uix"
 responsavel: null
 criado_em: 2026-09-07T12:47:05.223Z
-atualizado_em: 2026-09-07T12:49:47.021Z
-versao: 6
+atualizado_em: 2026-09-09T01:44:24.251Z
+versao: 8
 estimativa: P
 dependencias: []
 tags: [ux, a11y, layout]
@@ -56,3 +56,6 @@ Repo em /home/zatty/marmita, branch t-035-uix. Dev em http://localhost:5199/.
 - 2026-09-07T12:47:24.614Z : mover → pronto. Motivo: score 84, aceite testavel, sem deps
 - 2026-09-07T12:47:30.010Z : mover → fazendo. Motivo: inicio refinamento UI/UX
 - 2026-09-07T12:49:47.021Z : mover → revisao. Motivo: stepper+progresso+voltar+fixes, gates verdes, merge main
+- 2026-09-09T01:40:48.928Z : mover → fazendo. Motivo: retrabalho: home vira landing da cozinheira + renomeio ListaCerta
+- 2026-09-09T01:44:24.251Z : mover → revisao. Motivo: home landing + renomeio, gates verdes, merge main
+- 2026-09-09 (ia-opencode): retrabalho humano — home vira landing de venda p/ cozinheira (sem "sou cliente"); nome proposto ListaCerta (título, marca, manifest, package); login no header; /cardapio local mantido p/ teste da cozinheira.
