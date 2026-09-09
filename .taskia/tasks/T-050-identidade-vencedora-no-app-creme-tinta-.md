@@ -8,8 +8,8 @@ projeto: marmita
 branch: "t-050-identidade"
 responsavel: null
 criado_em: 2026-09-09T02:35:17.720Z
-atualizado_em: 2026-09-09T02:41:53.066Z
-versao: 6
+atualizado_em: 2026-09-09T12:26:41.944Z
+versao: 8
 estimativa: M
 dependencias: []
 tags: [frontend, identidade, tema]
@@ -56,3 +56,6 @@ Repo /home/zatty/marmita, branch t-050-identidade. Mock: `static/preview/listace
 - 2026-09-09T02:35:35.795Z : mover → pronto. Motivo: DoR ok
 - 2026-09-09T02:35:38.044Z : mover → fazendo. Motivo: inicio identidade vencedora
 - 2026-09-09T02:41:53.066Z : mover → revisao. Motivo: identidade em todo o app, gates verdes, tag v0.3.0
+- 2026-09-09T12:24:03.810Z : mover → fazendo. Motivo: retrabalho: layout espremido (grupo app estreito + home larga)
+- 2026-09-09T12:26:41.944Z : mover → revisao. Motivo: layout largo ok, todas rotas 200/303, gates verdes, merge main
+- 2026-09-09 (ia-opencode): code review do "espremido": causa raiz era o main max-w-xl herdado prendendo a home de 1120px; corrigido com grupo `(app)` estreito + home larga, CTAs com largura auto no desktop, import css do layout raiz; build + smoke ok.
