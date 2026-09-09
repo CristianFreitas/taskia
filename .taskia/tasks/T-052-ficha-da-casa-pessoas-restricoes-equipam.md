@@ -1,15 +1,15 @@
 ---
 id: T-052
 titulo: Ficha da casa (pessoas, restrições, equipamentos, despensa)
-status: pronto
+status: revisao
 tipo: feature
 prioridade: P0
 projeto: marmita
 branch: "t-052-ficha"
 responsavel: null
 criado_em: 2026-09-09T13:25:48.232Z
-atualizado_em: 2026-09-09T13:26:53.538Z
-versao: 4
+atualizado_em: 2026-09-09T14:26:00.350Z
+versao: 6
 estimativa: M
 dependencias: []
 tags: [casa, perfil, restricoes]
@@ -52,3 +52,5 @@ Repo /home/zatty/marmita, branch t-052-ficha. Local-first (mesmo padrão cliente
 - 2026-09-09 (ia-opencode): criada refinada do campo domicílio (score 85, v2).
 - 2026-09-09T13:26:41.883Z : mover → refinando. Motivo: DoR ok
 - 2026-09-09T13:26:53.538Z : mover → pronto. Motivo: DoR ok
+- 2026-09-09T14:24:35.139Z : mover → fazendo. Motivo: inicio ficha da casa
+- 2026-09-09T14:26:00.350Z : mover → revisao. Motivo: ficha CRUD + alerta + vinculo, gates verdes, merge main

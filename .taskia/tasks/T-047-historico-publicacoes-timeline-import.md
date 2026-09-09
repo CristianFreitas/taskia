@@ -1,15 +1,15 @@
 ---
 id: T-047
 titulo: Historico de publicacoes por perfil (manual + import + timeline)
-status: inbox
+status: fazendo
 tipo: feature
 prioridade: P1
 projeto: dome
-branch: ""
-responsavel: null
+branch: "feat/T-047-historico-publicacoes"
+responsavel: ia-opencode
 criado_em: 2026-09-09T01:53:00Z
-atualizado_em: 2026-09-09T01:53:00Z
-versao: 1
+atualizado_em: 2026-09-09T13:30:00Z
+versao: 2
 estimativa: M
 dependencias: [T-043]
 tags: [historico, timeline, twitter, import]
@@ -60,3 +60,6 @@ Branch sugerida feat/T-047-historico-publicacoes. Depende de T-043. Formato CSV 
 
 ## Log
 - 2026-09-09 (ia-opencode): criada via grill-me round 2, score 83.
+- 2026-09-09T13:30:00Z : mover → refinando. Motivo: dep T-043 em feito.
+- 2026-09-09T13:30:00Z : mover → pronto. Motivo: DoR ok (clarity 83>=70).
+- 2026-09-09T13:30:00Z : mover → fazendo. Motivo: inicio histórico+import. Formato CSV em docs/import.md (não import.csv).
