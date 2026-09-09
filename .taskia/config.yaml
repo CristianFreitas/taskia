@@ -16,7 +16,7 @@ projetos:
 projeto_padrao: taskia
 wip_por_responsavel_em_fazendo: 1
 clarity_minimo_para_pronto: 70
-sequencia_proximo_id: 41
+sequencia_proximo_id: 42
 stack:
   runtime: bun
   linguagem: typescript-strict

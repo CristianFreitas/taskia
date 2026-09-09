@@ -8,13 +8,14 @@
 ## 🔍 Refinando (0)
 — vazio —
 
-## ✅ Pronto (6)
+## ✅ Pronto (7)
 - [marmita] **T-032** 🔬 spike · P1 · score 83 — Levantar cozinheiras clientes B2B (assinatura)
 - [marmita] **T-034** ✨ feature · P2 · score 82 — Demo p/ cozinheiras (pitch + vídeo Higgsfield) [EXECUTAR POR ÚLTIMO]
 - [marmita] **T-040** ✨ feature · P0 · score 86 — Modelagem Postgres na Neon (tabelas + drizzle + migrations) [BASE — fazer 1º]
 - [marmita] **T-037** ✨ feature · P0 · score 86 — Login da cozinheira (cadastro, sessão, guards)
 - [marmita] **T-038** ✨ feature · P0 · score 85 — Isolamento por cozinheira (cada uma vê só o dela)
 - [marmita] **T-039** ✨ feature · P1 · score 83 — Anti-abuso no link público (rate-limit + flood)
+- [marmita] **T-041** ✨ feature · P1 · score 84 — Polimento frontend premium (p/ mimoV2.5)
 
 ## ⚡ Fazendo (0/3)
 — vazio —
