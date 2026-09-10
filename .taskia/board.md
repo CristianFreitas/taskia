@@ -2,10 +2,9 @@
 
 > Gerado à mão na Fase 0. Na Fase 1 será gerado por `resumir_quadro`.
 
-## 📥 Inbox (3)
-- [dome] **T-048** ✨ feature · P1 · score 85 — Cronjobs flexíveis multi-runner (opencode, codex, claude)
-- [dome] **T-049** 🔬 spike · P1 · score 82 — Spike Twitter API v2 por perfil (leitura, limites, risco)
+## 📥 Inbox (2)
 - [dome] **T-056** 🧹 chore · P1 · score 85 — Sync Neon real do Dome (migrate + seed) [BLOQUEADA em DATABASE_URL do humano]
+- [dome] **T-057** ✨ feature · P2 · score 83 — Leitor X por perfil (OAuth2 PKCE + timeline) [BLOQUEADA em app X do humano]
 
 ## 🔍 Refinando (0)
 — vazio —
@@ -46,6 +45,8 @@
 - [dome] **T-045** ✨ feature · P0 · score 88 — Personalidade + prompt-builder + guia anti-IA — feito (aceite tácito)
 - [dome] **T-046** ✨ feature · P1 · score 84 — Memória por perfil com ai-memory (dual-MCP) — verde, aguardando ok
 - [dome] **T-047** ✨ feature · P1 · score 83 — Histórico de publicações por perfil (manual + import) — verde, aguardando ok
+- [dome] **T-048** ✨ feature · P1 · score 85 — Cronjobs flexíveis multi-runner (opencode, codex, claude) — verde, aguardando ok
+- [dome] **T-049** 🔬 spike · P1 · score 82 — Spike Twitter API v2 (veredito CONTINUA, doc + filha T-057) — aguardando leitura
 
 ## ⚡ Fazendo (0/3)
 — vazio —
@@ -91,4 +92,4 @@
 - T-023..T-031 + T-033 + T-035 + T-036 + T-040 + T-037 + T-041 + T-050 + T-051 + T-052 + T-053 (marmita) em revisão — app no ar em http://localhost:5199/; aguardando ok humano p/ feito. T-032 (validação) e T-034 (demo) por fazer.
 - T-051..T-055 (domicílio) prontas — ordem: T-051, T-052 → T-053, resto livre. Copy da home já no ângulo domicílio (nome segue ListaCerta até decisão).
 - T-040 → T-037 → T-038 → T-039 (trilha Postgres+auth, re-refinadas p/ Neon).
-- [dome] T-042 a T-045 feitos; T-046/T-047 em revisão; T-050 bloqueada em DATABASE_URL do humano; T-048 → T-049 (human-review ON, sem auto-post no MVP). UI rica com Nemotron.
+- [dome] T-042 a T-045 feitos; T-046 a T-049 em revisão; T-056/T-057 bloqueadas no humano (DATABASE_URL + app X); trilha dome construída, UI rica com Nemotron.
