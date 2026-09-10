@@ -1,15 +1,15 @@
 ---
 id: T-048
 titulo: Cronjobs flexiveis multi-runner (opencode, codex, claude)
-status: inbox
+status: fazendo
 tipo: feature
 prioridade: P1
 projeto: dome
-branch: ""
-responsavel: null
+branch: "feat/T-048-cron-multi-runner"
+responsavel: ia-opencode
 criado_em: 2026-09-09T01:53:00Z
-atualizado_em: 2026-09-09T01:53:00Z
-versao: 1
+atualizado_em: 2026-09-09T14:40:00Z
+versao: 2
 estimativa: G
 dependencias: [T-044, T-045]
 tags: [cron, runner, opencode, codex, claude, automacao]
@@ -61,3 +61,6 @@ Branch sugerida feat/T-048-cron-multi-runner. Depende de T-044+T-045. Chave de A
 
 ## Log
 - 2026-09-09 (ia-opencode): criada via grill-me round 2, score 85, diferencial flexível.
+- 2026-09-09T14:40:00Z : mover → refinando. Motivo: deps T-044/T-045 em feito.
+- 2026-09-09T14:40:00Z : mover → pronto. Motivo: DoR ok (clarity 85>=70).
+- 2026-09-09T14:40:00Z : mover → fazendo. Motivo: inicio runners+dispatcher. cron_expr MVP: só "* * * * *" e "M H * * *" (parser cheio é futuro).

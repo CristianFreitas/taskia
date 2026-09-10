@@ -2,8 +2,7 @@
 
 > Gerado à mão na Fase 0. Na Fase 1 será gerado por `resumir_quadro`.
 
-## 📥 Inbox (4)
-- [dome] **T-047** ✨ feature · P1 · score 83 — Histórico de publicações por perfil (manual + import)
+## 📥 Inbox (3)
 - [dome] **T-048** ✨ feature · P1 · score 85 — Cronjobs flexíveis multi-runner (opencode, codex, claude)
 - [dome] **T-049** 🔬 spike · P1 · score 82 — Spike Twitter API v2 por perfil (leitura, limites, risco)
 - [dome] **T-056** 🧹 chore · P1 · score 85 — Sync Neon real do Dome (migrate + seed) [BLOQUEADA em DATABASE_URL do humano]
@@ -23,7 +22,7 @@
 ## ⚡ Fazendo (0/3)
 — vazio —
 
-## 👀 Revisão (18/5) ⚠️ estouro temporário — lote construído, aguardando ok humano
+## 👀 Revisão (19/5) ⚠️ estouro temporário — lote construído, aguardando ok humano
 - [marmita] **T-023** 🧹 chore · P0 — Setup app Marmita (SvelteKit PWA + shadcn-style + tokens clean)
 - [marmita] **T-024** ✨ feature · P0 — Modelo de dados Marmita + seed
 - [marmita] **T-025** ✨ feature · P1 — Cardápio do ciclo + cliente escolhe 10 pratos
@@ -42,9 +41,11 @@
 - [marmita] **T-050** ✨ feature · P0 — Identidade vencedora (creme+tinta+terracota, tag v0.3.0)
 - [marmita] **T-051** ✨ feature · P0 — Confirmação de compra (anti-visita-perdida)
 - [marmita] **T-052** ✨ feature · P0 — Ficha da casa (pessoas, restrições, equipamentos, despensa)
+- [marmita] **T-053** ✨ feature · P1 — Agenda de visitas (pronta vs em risco)
 - [dome] **T-044** ✨ feature · P0 · score 85 — CRUD perfis + vault de chaves API por perfil — verde, aguardando ok
 - [dome] **T-045** ✨ feature · P0 · score 88 — Personalidade + prompt-builder + guia anti-IA — feito (aceite tácito)
 - [dome] **T-046** ✨ feature · P1 · score 84 — Memória por perfil com ai-memory (dual-MCP) — verde, aguardando ok
+- [dome] **T-047** ✨ feature · P1 · score 83 — Histórico de publicações por perfil (manual + import) — verde, aguardando ok
 
 ## ⚡ Fazendo (0/3)
 — vazio —
@@ -87,7 +88,7 @@
 - [taskia] **T-003** spike superado (stack decidida em docs/10) — aposentado, arquivo preservado
 
 ## 🔴 Atenção
-- T-023..T-031 + T-033 + T-035 + T-036 + T-040 + T-037 + T-041 + T-050 + T-051 + T-052 (marmita) em revisão — app no ar em http://localhost:5199/; aguardando ok humano p/ feito. T-032 (validação) e T-034 (demo) por fazer.
+- T-023..T-031 + T-033 + T-035 + T-036 + T-040 + T-037 + T-041 + T-050 + T-051 + T-052 + T-053 (marmita) em revisão — app no ar em http://localhost:5199/; aguardando ok humano p/ feito. T-032 (validação) e T-034 (demo) por fazer.
 - T-051..T-055 (domicílio) prontas — ordem: T-051, T-052 → T-053, resto livre. Copy da home já no ângulo domicílio (nome segue ListaCerta até decisão).
 - T-040 → T-037 → T-038 → T-039 (trilha Postgres+auth, re-refinadas p/ Neon).
-- [dome] T-042 a T-045 feitos; T-046 em revisão; T-056 bloqueada em DATABASE_URL do humano; T-047 → T-048 → T-049 (human-review ON, sem auto-post no MVP). UI rica com Nemotron.
+- [dome] T-042 a T-045 feitos; T-046/T-047 em revisão; T-050 bloqueada em DATABASE_URL do humano; T-048 → T-049 (human-review ON, sem auto-post no MVP). UI rica com Nemotron.

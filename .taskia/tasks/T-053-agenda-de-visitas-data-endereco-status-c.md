@@ -1,15 +1,15 @@
 ---
 id: T-053
 titulo: Agenda de visitas (data, endereço, status, confirmação)
-status: pronto
+status: revisao
 tipo: feature
 prioridade: P1
 projeto: marmita
 branch: "t-053-agenda"
 responsavel: null
 criado_em: 2026-09-09T13:25:55.566Z
-atualizado_em: 2026-09-09T13:26:55.360Z
-versao: 4
+atualizado_em: 2026-09-10T04:02:59.523Z
+versao: 6
 estimativa: M
 dependencias: [T-052]
 tags: [agenda, visita, deslocamento]
@@ -52,3 +52,5 @@ Requer T-052 (casa). Repo /home/zatty/marmita, branch t-053-agenda.
 - 2026-09-09 (ia-opencode): criada refinada do campo domicílio (score 84, v2).
 - 2026-09-09T13:26:44.357Z : mover → refinando. Motivo: DoR ok
 - 2026-09-09T13:26:55.360Z : mover → pronto. Motivo: DoR ok
+- 2026-09-09T15:04:38.297Z : mover → fazendo. Motivo: inicio agenda de visitas
+- 2026-09-10T04:02:59.523Z : mover → revisao. Motivo: agenda com risco/pronta, gates verdes, merge main
