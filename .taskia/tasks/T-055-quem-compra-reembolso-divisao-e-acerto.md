@@ -1,15 +1,15 @@
 ---
 id: T-055
 titulo: Quem compra + reembolso (divisão e acerto)
-status: pronto
+status: revisao
 tipo: feature
 prioridade: P1
 projeto: marmita
 branch: "t-055-reembolso"
 responsavel: null
 criado_em: 2026-09-09T13:26:00.075Z
-atualizado_em: 2026-09-09T13:27:02.501Z
-versao: 4
+atualizado_em: 2026-09-10T05:01:01.718Z
+versao: 6
 estimativa: P
 dependencias: []
 tags: [compras, reembolso, acerto]
@@ -52,3 +52,5 @@ Repo /home/zatty/marmita, branch t-055-reembolso. Valores em centavos (nunca flo
 - 2026-09-09 (ia-opencode): criada refinada do campo domicílio (score 83, v2).
 - 2026-09-09T13:26:48.269Z : mover → refinando. Motivo: DoR ok
 - 2026-09-09T13:27:02.501Z : mover → pronto. Motivo: DoR ok
+- 2026-09-10T04:57:35.821Z : mover → fazendo. Motivo: inicio quem-compra + reembolso
+- 2026-09-10T05:01:01.718Z : mover → revisao. Motivo: acerto com texto e historico, gates verdes, merge main
