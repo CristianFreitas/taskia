@@ -1,15 +1,15 @@
 ---
 id: T-054
 titulo: Cobrança (pacote, Pix, recibo, lembrete)
-status: pronto
+status: revisao
 tipo: feature
 prioridade: P1
 projeto: marmita
 branch: "t-054-cobranca"
 responsavel: null
 criado_em: 2026-09-09T13:25:58.070Z
-atualizado_em: 2026-09-09T13:26:57.243Z
-versao: 4
+atualizado_em: 2026-09-10T04:33:57.688Z
+versao: 6
 estimativa: P
 dependencias: []
 tags: [cobranca, pix, pagamento]
@@ -52,3 +52,5 @@ Repo /home/zatty/marmita, branch t-054-cobranca. Tom dos textos: firme e gentil,
 - 2026-09-09 (ia-opencode): criada refinada do campo domicílio (score 82, v2).
 - 2026-09-09T13:26:46.234Z : mover → refinando. Motivo: DoR ok
 - 2026-09-09T13:26:57.243Z : mover → pronto. Motivo: DoR ok
+- 2026-09-10T04:29:19.490Z : mover → fazendo. Motivo: inicio cobranca
+- 2026-09-10T04:33:57.688Z : mover → revisao. Motivo: cobranca com textos, gates verdes, merge main

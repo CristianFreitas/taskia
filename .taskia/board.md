@@ -21,7 +21,7 @@
 ## ⚡ Fazendo (0/3)
 — vazio —
 
-## 👀 Revisão (19/5) ⚠️ estouro temporário — lote construído, aguardando ok humano
+## 👀 Revisão (20/5) ⚠️ estouro temporário — lote construído, aguardando ok humano
 - [marmita] **T-023** 🧹 chore · P0 — Setup app Marmita (SvelteKit PWA + shadcn-style + tokens clean)
 - [marmita] **T-024** ✨ feature · P0 — Modelo de dados Marmita + seed
 - [marmita] **T-025** ✨ feature · P1 — Cardápio do ciclo + cliente escolhe 10 pratos
@@ -41,6 +41,7 @@
 - [marmita] **T-051** ✨ feature · P0 — Confirmação de compra (anti-visita-perdida)
 - [marmita] **T-052** ✨ feature · P0 — Ficha da casa (pessoas, restrições, equipamentos, despensa)
 - [marmita] **T-053** ✨ feature · P1 — Agenda de visitas (pronta vs em risco)
+- [marmita] **T-054** ✨ feature · P1 — Cobrança (pacote, Pix, recibo, lembrete)
 - [dome] **T-044** ✨ feature · P0 · score 85 — CRUD perfis + vault de chaves API por perfil — verde, aguardando ok
 - [dome] **T-045** ✨ feature · P0 · score 88 — Personalidade + prompt-builder + guia anti-IA — feito (aceite tácito)
 - [dome] **T-046** ✨ feature · P1 · score 84 — Memória por perfil com ai-memory (dual-MCP) — verde, aguardando ok
@@ -89,7 +90,7 @@
 - [taskia] **T-003** spike superado (stack decidida em docs/10) — aposentado, arquivo preservado
 
 ## 🔴 Atenção
-- T-023..T-031 + T-033 + T-035 + T-036 + T-040 + T-037 + T-041 + T-050 + T-051 + T-052 + T-053 (marmita) em revisão — app no ar em http://localhost:5199/; aguardando ok humano p/ feito. T-032 (validação) e T-034 (demo) por fazer.
+- T-023..T-031 + T-033 + T-035 + T-036 + T-040 + T-037 + T-041 + T-050 + T-051 + T-052 + T-053 + T-054 (marmita) em revisão — app no ar em http://localhost:5199/; aguardando ok humano p/ feito. T-032 (validação) e T-034 (demo) por fazer.
 - T-051..T-055 (domicílio) prontas — ordem: T-051, T-052 → T-053, resto livre. Copy da home já no ângulo domicílio (nome segue ListaCerta até decisão).
 - T-040 → T-037 → T-038 → T-039 (trilha Postgres+auth, re-refinadas p/ Neon).
 - [dome] T-042 a T-045 feitos; T-046 a T-049 em revisão; T-056/T-057 bloqueadas no humano (DATABASE_URL + app X); trilha dome construída, UI rica com Nemotron.
